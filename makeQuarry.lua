@@ -408,6 +408,10 @@ function squareLogic(sideLength)
             mineForward()
         end
 
+        if currentLoc[1] == sideLength-1 and currentLoc[3] == sideLength-1 then
+            break
+        end
+
         moveToLocZ(0) -- TODO: want to make a function so that it doesnt turn around
 
         -- turning code here
@@ -417,14 +421,11 @@ function squareLogic(sideLength)
             writeToLog("395: Face Forward")
             faceDirection(FaceForwardFromStart)
         end
-        if currentLoc[1] == sideLength-1 and currentLoc[3] == sideLength-1 then
-            break
-        end
     end
 
     writeToLog("419: should be heading back to base")
     moveToLocX(0)
---    moveToLocZ(0) -- should not be needed
+    moveToLocZ(0)
     moveToLocY(0)
 
     faceDirection(FaceBackwardFromStart)
