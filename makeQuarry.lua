@@ -183,10 +183,11 @@ function returnToBase()
 
     faceDirection(FaceBackwardFromStart)
     depositAll()
-    -- todo    writeToLog("177: About to turn Left")
     faceDirection(FaceLeftFromStart)
     refreshFuel()
     faceDirection(FaceForwardFromStart)
+
+    writeToLog("190: return to where we saved x,y,z (" .. savedX .. "," .. savedY .. "," .. savedZ .. ")")
 
     moveToLocZ(savedY)
     moveToLocY(savedZ)
@@ -314,7 +315,7 @@ end
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocY(yGoing)
-    writeToLog("314: Started moveToLocY(" .. yGoing ..")" )
+    writeToLog("317: Started moveToLocY(" .. yGoing ..")" )
     local lDist = math.abs(yGoing-currentLoc[2])
 
     if yGoing > currentLoc[2] then
@@ -335,7 +336,7 @@ end
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocZ(zGoing)
-    writeToLog("355: Started moveToLocZ(" .. zGoing ..")" )
+    writeToLog("338: Started moveToLocZ(" .. zGoing ..")" )
     local lDist = math.abs(zGoing-currentLoc[3])
 
     if zGoing > currentLoc[3] then
