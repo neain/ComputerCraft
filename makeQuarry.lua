@@ -380,7 +380,7 @@ end
 
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
-    for zDistance = 1,sideLength-1 do
+    for zDistance = 1,sideLength do
         for xDistance = 1,sideLength-1 do
             mineForward()
             writeToLog("384: x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
@@ -390,11 +390,12 @@ function squareLogic(sideLength)
         if(currentLoc[1]~=sideLength-1) then
             faceDirection(FaceRightFromStart)
             mineForward()
-            writeToLog("390: x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
+            writeToLog("393: x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
             screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
 
-            writeToLog("393: End of one side. % is (" .. currentLoc[1]%2 .. ")")
-            writeToLog("394: zDistance(" .. zDistance .. ")")
+            writeToLog("396: End of one side. % is (" .. currentLoc[1]%2 .. ")")
+            writeToLog("397: zDistance(" .. zDistance .. ")")
+
             if(currentLoc[1]%2==0) then
                 writeToLog("395: Face Forward")
                 faceDirection(FaceForwardFromStart)
