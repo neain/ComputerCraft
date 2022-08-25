@@ -1,6 +1,6 @@
-term.clear()
+--[[ term.clear()
 term.setCursorPos(1,1)
-io.write("Quarry or Pillar? (lowercase)")
+io.write("Quarry or Pillar?")
 isQuarry = io.read()
 
 term.clear()
@@ -18,6 +18,8 @@ if isQuarry == "Pillar" then
 else
     goingUp = false
 end
+
+]]--
 
 function screenWriting(screenText)
     term.clear()
