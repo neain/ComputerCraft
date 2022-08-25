@@ -382,8 +382,8 @@ end
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
     writeToLog("383: SquareLogic start("..sideLength..")")
-    while currentLoc[1]<sideLength do
-        while currentLoc[3]<sideLength do
+    while currentLoc[1]<sideLength do --while x is not our length 
+        while currentLoc[3]<sideLength do -- while z is not our length
             mineForward()
         end
 
@@ -414,16 +414,22 @@ end
 
 -- sets up the logic to mine a square, then change Y, and mine the next square
 function devastate(length, height)
-    writeToLog("407: devastate| (" .. length .. "," .. height .. ")" )
-    for i = 1,height do
-        squareLogic(length)
-        for n = 1,3 do
-            if goingUp then
-                goUp()
-            else
+    writeToLog("417: devastate| (" .. length .. "," .. height .. ")" )
+    local yCurrent = 0
+    while yCurrent<height do
+        -- first make sure we are on the correct Y level
+        if goingUp then
+            while currentLoc[2]<yCurrent then
                 goDown()
             end
+        else
+            while currentLoc[2]<yCurrent then
+                goUp()
+            end
         end
+
+        -- then call squareLogic to mine out that level
+        squareLogic(length)
     end
 end
 
