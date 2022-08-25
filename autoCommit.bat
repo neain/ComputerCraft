@@ -1,4 +1,4 @@
-date /t
+set theOneDate = date /t
 git add .
-git commit -m "update"
+git commit -m theOneDate
 git push
