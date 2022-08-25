@@ -342,7 +342,7 @@ function moveToLocZ(zGoing)
     else
         return true
     end
-    writeToLog("Facing the direction that it thinks it needs to go to get back to z(" .. zGoing ..")")
+-- todo    writeToLog("Facing the direction that it thinks it needs to go to get back to z(" .. zGoing ..")")
     for distance = 1,lDist do
         moveWithoutMining()
     end
@@ -400,7 +400,7 @@ end
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
     writeToLog("383: SquareLogic start("..sideLength..")")
-    while currentLoc[1]<sideLength do --while x is not our length 
+    while currentLoc[1]<sideLength-1 do --while x is not our length 
         while currentLoc[3]<sideLength-1 do -- while z is not our length
             mineForward()
         end
