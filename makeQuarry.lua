@@ -127,7 +127,7 @@ function goUp()
     while not turtle.up() do
         if turtle.detectUp() then
             local junkData, nameOfBlockUp = turtle.inspectUp()
-            writeToLog("Line 110 - DetectingUp: " .. nameOfBlockUp.name)
+            -- todo    writeToLog("Line 110 - DetectingUp: " .. nameOfBlockUp.name)
             screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
             if turtle.digUp() then
                 if not canCollectMore then
@@ -149,7 +149,7 @@ function goDown()
     while not turtle.down() do
         if turtle.detectDown() then
             local junkData, nameOfBlockDown = turtle.inspectDown()
-            writeToLog("Line 130 - DetectingDown: " .. nameOfBlockDown.name)
+            -- todo    writeToLog("Line 130 - DetectingDown: " .. nameOfBlockDown.name)
             screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
             if turtle.digDown() then
                 if not canCollectMore then
@@ -179,7 +179,7 @@ function returnToBase()
 
     faceDirection(FaceBackwardFromStart)
     depositAll()
-    writeToLog("177: About to turn Left")
+    -- todo    writeToLog("177: About to turn Left")
     faceDirection(FaceLeftFromStart)
     refreshFuel()
     faceDirection(FaceForwardFromStart)
@@ -202,7 +202,7 @@ end
 
 -- turns the turtle until it faces the direction desired
 function faceDirection(faceDir)
-    writeToLog("205: faceDirection = " .. dumpTable(faceDir))
+    -- todo    writeToLog("205: faceDirection = " .. dumpTable(faceDir))
     local displacement = currentFacing[3]-faceDir[3]
 -- todo    writeToLog("203: displacement | " .. displacement)
     if displacement == 1 or displacement == -3 then
@@ -349,12 +349,12 @@ end
 
 -- checks forward, if block, then mine, then move forward, if block above, mine above, if block below, mine below.
 function mineForward()
-    writeToLog("352: mineForward start")
+    -- todo    writeToLog("352: mineForward start")
     if turtle.detect() then
         local junkData, nameOfBlock = turtle.inspect()
         if turtle.dig() then
             if not canCollectMore() then
-                writeToLog("341: mineForward cantCollect More")
+                -- todo    writeToLog("341: mineForward cantCollect More")
                 returnToBase()
             end
         end
@@ -399,11 +399,11 @@ end
 
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
-    writeToLog("383: SquareLogic start("..sideLength..")")
+    -- todo    writeToLog("383: SquareLogic start("..sideLength..")")
     while currentLoc[1] ~= sideLength do --while x is not our length 
-        writeToLog("404: currentLoc[1]<sideLength-1(" .. currentLoc[1] .. "," .. (sideLength-1) .. ")")
+        -- todo    writeToLog("404: currentLoc[1]<sideLength-1(" .. currentLoc[1] .. "," .. (sideLength-1) .. ")")
         while currentLoc[3] ~= (sideLength-1) do -- while z is not our length
-            writeToLog("406: currentLoc[3]<sideLength-1(" .. currentLoc[3] .. "," .. (sideLength-1) .. ")")
+            -- todo    writeToLog("406: currentLoc[3]<sideLength-1(" .. currentLoc[3] .. "," .. (sideLength-1) .. ")")
             faceDirection(FaceForwardFromStart)
             mineForward()
         end
@@ -418,12 +418,12 @@ function squareLogic(sideLength)
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
             faceDirection(FaceRightFromStart)
             mineForward()
-            writeToLog("395: Face Forward")
+            -- todo    writeToLog("395: Face Forward")
             faceDirection(FaceForwardFromStart)
         end
     end
 
-    writeToLog("419: should be heading back to base")
+-- todo    writeToLog("419: should be heading back to base")
     moveToLocX(0)
     moveToLocZ(0)
     moveToLocY(0)
@@ -441,6 +441,8 @@ function devastate(length, height)
     writeToLog("417: devastate| (" .. length .. "," .. height .. ")" )
     local yCurrent = 0
     while yCurrent<height do
+        writeToLog("444: yCurrent height CurrentLoc[Y] (" .. yCurrent .. "," .. height .. currentLoc[2] .. ")")
+        writeToLog("445: goingUp is (" .. goingUp .. ")")
         -- first make sure we are on the correct Y level
         if goingUp then
             while currentLoc[2]<yCurrent do
