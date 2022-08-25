@@ -335,12 +335,10 @@ end
 
 -- checks forward, if block, then mine, then move forward, if block above, mine above, if block below, mine below.
 function mineForward()
-    writeToLog("325: mineForward start")
+-- todo    writeToLog("325: mineForward start")
     if turtle.detect() then
         local junkData, nameOfBlock = turtle.inspect()
--- todo        writeToLog("320 - Detecting: " .. nameOfBlock.name)
         if turtle.dig() then
--- todo            writeToLog("330: mineForward digging: ")
             if not canCollectMore() then
                 writeToLog("341: mineForward cantCollect More")
                 returnToBase()
@@ -376,6 +374,9 @@ function mineForward()
             end
         end
     end
+
+    writeToLog("380: moved to x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
+    screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
 end
 
 -- sets up the logic to mine in a square for each Y level
@@ -386,16 +387,12 @@ function squareLogic(sideLength)
         for zDistance = 0,sideLength do
             writeToLog("385: SquareLogic second for loop("..zDistance..")")
             mineForward()
-            writeToLog("384: x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
-            screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
         end
 
         -- turning code here
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
             faceDirection(FaceRightFromStart)
             mineForward()
-            writeToLog("393: x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
-            screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
 
             writeToLog("396: End of one side. % is (" .. currentLoc[1]%2 .. ")")
             writeToLog("397: xDistance(" .. xDistance .. ")")
