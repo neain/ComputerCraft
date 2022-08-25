@@ -450,8 +450,8 @@ function devastate(length, height)
                 end
             end
         else
-            writeToLog("454: inside the else")
-            writeToLog("455: currentLoc[Y], yCurrent (" .. currentLoc[2] .. "," .. yCurrent .. ")")
+            writeToLog("453: inside the else")
+            writeToLog("454: currentLoc[Y], yCurrent (" .. currentLoc[2] .. "," .. yCurrent .. ")")
             while currentLoc[2]<yCurrent do
                 if goDown() then
                 end
