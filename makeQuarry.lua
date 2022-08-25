@@ -202,8 +202,7 @@ end
 
 -- turns the turtle until it faces the direction desired
 function faceDirection(faceDir)
-    writeToLog("203: faceDirection")
-    writeToLog(dumpTable(faceDir))
+    writeToLog("205: faceDirection = " .. dumpTable(faceDir))
     local displacement = currentFacing[3]-faceDir[3]
 -- todo    writeToLog("203: displacement | " .. displacement)
     if displacement == 1 or displacement == -3 then
@@ -350,7 +349,7 @@ end
 
 -- checks forward, if block, then mine, then move forward, if block above, mine above, if block below, mine below.
 function mineForward()
--- todo    writeToLog("325: mineForward start")
+    writeToLog("352: mineForward start")
     if turtle.detect() then
         local junkData, nameOfBlock = turtle.inspect()
         if turtle.dig() then
