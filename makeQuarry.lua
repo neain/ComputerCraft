@@ -442,7 +442,7 @@ function devastate(length, height)
     local yCurrent = 0
     while yCurrent<height do
         writeToLog("444: yCurrent height CurrentLoc[Y] (" .. yCurrent .. "," .. height .. currentLoc[2] .. ")")
-        writeToLog("445: goingUp is (" .. goingUp .. ")")
+        writeToLog("445: goingUp is (" .. tostring(goingUp) .. ")")
         -- first make sure we are on the correct Y level
         if goingUp then
             while currentLoc[2]<yCurrent do
