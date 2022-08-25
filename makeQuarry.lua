@@ -203,7 +203,7 @@ end
 -- turns the turtle until it faces the direction desired
 function faceDirection(faceDir)
     writeToLog("203: faceDirection")
-    writeToLog(dump(faceDir))
+    writeToLog(dumpTable(faceDir))
     local displacement = currentFacing[3]-faceDir[3]
 -- todo    writeToLog("203: displacement | " .. displacement)
     if displacement == 1 or displacement == -3 then
@@ -380,8 +380,11 @@ end
 
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
+    writeToLog("383: SquareLogic start("..sideLength..")")
     for xDistance = 0,sideLength+1 do
+        writeToLog("385: SquareLogic first for loop("..xDistance..")")
         for zDistance = 0,sideLength do
+            writeToLog("385: SquareLogic second for loop("..zDistance..")")
             mineForward()
             writeToLog("384: x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
             screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
@@ -433,12 +436,12 @@ function devastate(length, height)
     end
 end
 
-function dump(o)
+function dumpTable(o)
     if type(o) == 'table' then
        local s = '{ '
        for k,v in pairs(o) do
           if type(k) ~= 'number' then k = '"'..k..'"' end
-          s = s .. '['..k..'] = ' .. dump(v) .. ','
+          s = s .. '['..k..'] = ' .. dumpTable(v) .. ','
        end
        return s .. '} '
     else
