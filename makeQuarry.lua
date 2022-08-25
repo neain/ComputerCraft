@@ -265,6 +265,16 @@ end
 -- moves one block forward without trying to mine anything
 -- returns false if it cant move
 function moveWithoutMining()
+    -- just making sure that the turtle doesnt run off again
+    if currentLoc[1]<-1 then
+        writeToLog("270: Turtle went into -X area")
+        os.exit()
+    end
+    if currentLoc[3]<-1 then
+        writeToLog("270: Turtle went into -Z area")
+        os.exit()
+    end
+
     if turtle.forward() then
         writeToLog("255: turtle moved forward")
         currentLoc[1] = currentLoc[1] + currentFacing[1]
@@ -329,7 +339,6 @@ function moveToLocZ(zGoing)
         return true
     end
     writeToLog("Facing the direction that it thinks it needs to go to get back to z(" .. zGoing ..")")
-    os.sleep(5)
     for distance = 1,lDist do
         moveWithoutMining()
     end
@@ -349,15 +358,21 @@ function mineForward()
 
     end
     
--- todo    writeToLog("339: Trying turtle.forward()")
+    -- just making sure that the turtle doesnt run off again
+    if currentLoc[1]<-1 then
+        writeToLog("263: Turtle went into -X area")
+        os.exit()
+    end
+    if currentLoc[3]<-1 then
+        writeToLog("267: Turtle went into -Z area")
+        os.exit()
+    end
+
+
+
     if turtle.forward() then
         currentLoc[1] = currentLoc[1] + currentFacing[1]
         currentLoc[3] = currentLoc[3] + currentFacing[2]
---[[    else
-        writeToLog("344: failed to move. Turtle error message: ")
-        print(turtle.forward())
-        writeToLog(turtle.forward())
-]]        
     end
 
     if turtle.detectUp() then
