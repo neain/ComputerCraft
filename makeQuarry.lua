@@ -419,11 +419,11 @@ function devastate(length, height)
     while yCurrent<height do
         -- first make sure we are on the correct Y level
         if goingUp then
-            while currentLoc[2]<yCurrent then
+            while currentLoc[2]<yCurrent do
                 goDown()
             end
         else
-            while currentLoc[2]<yCurrent then
+            while currentLoc[2]<yCurrent do
                 goUp()
             end
         end
