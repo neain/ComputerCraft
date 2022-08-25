@@ -276,12 +276,14 @@ function moveWithoutMining()
     end
 
     if turtle.forward() then
-        writeToLog("255: turtle moved forward")
+        writeToLog("279: turtle moved forward")
         currentLoc[1] = currentLoc[1] + currentFacing[1]
         currentLoc[3] = currentLoc[3] + currentFacing[2]
+        writeToLog("282: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
+        screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
         return true
     else
-        writeToLog("260: failed to move forward.")
+        writeToLog("286: failed to move forward.")
         return false
     end
 end
@@ -290,7 +292,7 @@ end
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocX(xGoing)
-    writeToLog("270: Started moveToLocX")
+    writeToLog("295: Started moveToLocX(" .. xGoing ..")" )
     local lDist = math.abs(xGoing-currentLoc[1])
 
     if xGoing > currentLoc[1] then
@@ -309,6 +311,7 @@ end
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocY(yGoing)
+    writeToLog("314: Started moveToLocY(" .. yGoing ..")" )
     local lDist = math.abs(yGoing-currentLoc[2])
 
     if yGoing > currentLoc[2] then
@@ -329,6 +332,7 @@ end
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocZ(zGoing)
+    writeToLog("355: Started moveToLocZ(" .. zGoing ..")" )
     local lDist = math.abs(zGoing-currentLoc[3])
 
     if zGoing > currentLoc[3] then
@@ -391,9 +395,6 @@ function mineForward()
             end
         end
     end
-
-    writeToLog("380: moved to x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
-    screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
 end
 
 -- sets up the logic to mine in a square for each Y level
@@ -414,6 +415,8 @@ function squareLogic(sideLength)
             faceDirection(FaceForwardFromStart)
         end
     end
+
+    writeToLog("419: should be heading back to base")
     moveToLocX(0)
 --    moveToLocZ(0) -- should not be needed
     moveToLocY(0)
