@@ -74,7 +74,7 @@ local currentLoc = { 0,0,0 }
 local currentFacing = FaceForwardFromStart
 
 -- variables that shouldnt need to be variables, but are so that debugging things is easier
-local invSize = 5
+local invSize = 14
 local goingUp = false
 local sides, depth = tonumber(sSize), tonumber(yDisp) -- length of the sides, how far down or up
 -- local sides, depth = 5, 5
