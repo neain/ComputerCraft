@@ -417,6 +417,9 @@ function squareLogic(sideLength)
             writeToLog("395: Face Forward")
             faceDirection(FaceForwardFromStart)
         end
+        if currentLoc[1] == sideLength-1 and currentLoc[3] == sideLength-1 then
+            break
+        end
     end
 
     writeToLog("419: should be heading back to base")
