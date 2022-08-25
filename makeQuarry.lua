@@ -453,6 +453,11 @@ function dump(o)
 -- Running Code Below Here --
 -----------------------------
 
+
+faceDirection(FaceLeftFromStart)
+refreshFuel()
+refuel()
+
 if turtle.detectUp() then
     turtle.digUp()
 end
@@ -461,9 +466,6 @@ if turtle.detectDown() then
     turtle.digDown()
 end
 
-faceDirection(FaceLeftFromStart)
-refreshFuel()
-refuel()
 faceDirection(FaceForwardFromStart)
 devastate(sides, depth)
 
