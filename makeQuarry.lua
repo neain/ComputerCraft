@@ -387,7 +387,7 @@ function squareLogic(sideLength)
             screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
         end
         -- turning code here
-        if(currentLoc[1]~=sideLength-1)
+        if(currentLoc[1]~=sideLength-1) then
             faceDirection(FaceRightFromStart)
             mineForward()
             writeToLog("390: x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
