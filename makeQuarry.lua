@@ -291,6 +291,32 @@ function moveWithoutMining()
     end
 end
 
+-- moves one block backwards without trying to mine anything
+-- returns false if it cant move
+function moveWithoutMiningBack()
+    -- just making sure that the turtle doesnt run off again
+    if currentLoc[1]<-1 then
+        writeToLog("270: Turtle went into -X area")
+        os.exit()
+    end
+    if currentLoc[3]<-1 then
+        writeToLog("270: Turtle went into -Z area")
+        os.exit()
+    end
+
+    if turtle.back() then
+-- todo        writeToLog("279: turtle moved backwards")
+        currentLoc[1] = currentLoc[1] - currentFacing[1]
+        currentLoc[3] = currentLoc[3] - currentFacing[2]
+        writeToLog("311: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
+        screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
+        return true
+    else
+        writeToLog("286: failed to move backwards.")
+        return false
+    end
+end
+
 -- moves to x={xLoc} without mining a block
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
@@ -348,6 +374,26 @@ function moveToLocZ(zGoing)
 -- todo    writeToLog("Facing the direction that it thinks it needs to go to get back to z(" .. zGoing ..")")
     for distance = 1,lDist do
         moveWithoutMining()
+    end
+end
+
+-- moves to z={zLoc} backwards without mining a block
+-- returns true if it can move to that location
+-- returns false if anything gets in the way
+function moveToLocZ(zGoing)
+    writeToLog("358: Started moveToLocZ backwards(" .. zGoing ..")" )
+    local lDist = math.abs(zGoing-currentLoc[3])
+
+    if zGoing > currentLoc[3] then
+        faceDirection(FaceBackwardFromStart)
+    elseif zGoing < currentLoc[3] then
+        faceDirection(FaceForwardFromStart)
+    else
+        return true
+    end
+-- todo    writeToLog("Facing the direction that it thinks it needs to go to get back to z(" .. zGoing ..")")
+    for distance = 1,lDist do
+        moveWithoutMiningBack()
     end
 end
 
