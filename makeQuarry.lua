@@ -447,21 +447,20 @@ function devastate(length, height)
         if goingUp then
             while currentLoc[2]<yCurrent do
                 if goUp() then
-                    yCurrent=yCurrent+1
                 end
             end
         else
             writeToLog("454: inside the else")
-            writeToLog("455: currentLoc[Y], yCurrent (" .. currentLoc[2] .. yCurrent .. ")")
+            writeToLog("455: currentLoc[Y], yCurrent (" .. currentLoc[2] .. "," .. yCurrent .. ")")
             while currentLoc[2]<yCurrent do
                 if goDown() then
-                    yCurrent=yCurrent+1
                 end
             end
         end
 
         -- then call squareLogic to mine out that level
         squareLogic(length)
+        yCurrent = yCurrent + 3
     end
 end
 
