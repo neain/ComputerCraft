@@ -11,14 +11,12 @@ if sSize == nil then sSize = 5 end
 
 term.clear()
 term.setCursorPos(1,1)
-if string.lower(isQuarry) == "u" then io.write("How far up?: ")
-else io.write("How far down?: ") end
+if string.lower(isQuarry) == "u" 
+then io.write("How far up?: ")
+else 
+    io.write("How far down?: ") 
+end
 yDisp = io.read()
-
-if string.lower(isQuarry) == "u" then goingUp = true
-else goingUp = false end
-
-
 
 function screenWriting(screenText)
     term.clear()
@@ -75,10 +73,15 @@ local currentFacing = FaceForwardFromStart
 
 -- variables that shouldnt need to be variables, but are so that debugging things is easier
 local invSize = 14
-local goingUp = false
 local sides, depth = tonumber(sSize), tonumber(yDisp) -- length of the sides, how far down or up
 -- local sides, depth = 5, 5
 
+local goingUp
+if string.lower(isQuarry) == "u" then 
+    goingUp = true
+else 
+    goingUp = false 
+end
 
 
 ----------------------------
