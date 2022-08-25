@@ -385,7 +385,6 @@ function mineForward()
 
     if turtle.detectUp() then
         if turtle.digUp() then
-            collect()
 -- todo            writeToLog("353: dug up")
             if not canCollectMore then
                 returnToBase()
@@ -395,7 +394,6 @@ function mineForward()
 
     if turtle.detectDown() then
         if turtle.digDown() then
-            collect()
             if not canCollectMore then
                 returnToBase()
             end
