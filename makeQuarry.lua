@@ -140,6 +140,8 @@ function goUp()
         end
     end
     currentLoc[2] = currentLoc[2]+1
+    writeToLog("142: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
+    screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
     return true
 end
 
@@ -162,6 +164,8 @@ function goDown()
         end
     end
     currentLoc[2] = currentLoc[2]-1
+    writeToLog("167: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
+    screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
     return true
 end
 
@@ -278,7 +282,7 @@ function moveWithoutMining()
 -- todo        writeToLog("279: turtle moved forward")
         currentLoc[1] = currentLoc[1] + currentFacing[1]
         currentLoc[3] = currentLoc[3] + currentFacing[2]
-        writeToLog("282: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
+        writeToLog("281: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
         screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
         return true
     else
@@ -306,7 +310,7 @@ function moveToLocX(xGoing)
     end
 end
 
--- moves to y={yLoc} without mining a block
+-- moves to y={yLoc} while mining anything that gets in its way
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocY(yGoing)
@@ -452,8 +456,9 @@ function devastate(length, height)
         else
             writeToLog("453: inside the else")
             writeToLog("454: currentLoc[Y], yCurrent (" .. currentLoc[2] .. "," .. yCurrent .. ")")
-            while currentLoc[2]<yCurrent do
+            while math.abs(currentLoc[2])<yCurrent do
                 if goDown() then
+
                 end
             end
         end
