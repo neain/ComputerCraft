@@ -275,7 +275,7 @@ function moveWithoutMining()
     end
 
     if turtle.forward() then
-        writeToLog("279: turtle moved forward")
+-- todo        writeToLog("279: turtle moved forward")
         currentLoc[1] = currentLoc[1] + currentFacing[1]
         currentLoc[3] = currentLoc[3] + currentFacing[2]
         writeToLog("282: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
@@ -400,15 +400,15 @@ end
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
     writeToLog("383: SquareLogic start("..sideLength..")")
-    while currentLoc[1]<sideLength do --while x is not our length 
+    while currentLoc[1] ~= sideLength do --while x is not our length 
         writeToLog("404: currentLoc[1]<sideLength-1(" .. currentLoc[1] .. "," .. (sideLength-1) .. ")")
-        while currentLoc[3]<sideLength-1 do -- while z is not our length
+        while currentLoc[3] ~= (sideLength-1) do -- while z is not our length
             writeToLog("406: currentLoc[3]<sideLength-1(" .. currentLoc[3] .. "," .. (sideLength-1) .. ")")
             faceDirection(FaceForwardFromStart)
             mineForward()
         end
 
-        moveToLocZ(0)
+        moveToLocZ(0) -- TODO: want to make a function so that it doesnt turn around
 
         -- turning code here
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
