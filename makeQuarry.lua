@@ -1,25 +1,24 @@
---[[ term.clear()
+term.clear()
 term.setCursorPos(1,1)
-io.write("Quarry or Pillar?")
+io.write("going [u]p or [d]own?")
 isQuarry = io.read()
 
 term.clear()
 term.setCursorPos(1,1)
 io.write("Length of a side: ")
 sSize = io.read()
+if sSize == nil then sSize = 5 end
 
 term.clear()
 term.setCursorPos(1,1)
-io.write("Y displacement: ")
+if string.lower(isQuarry) == "u" then io.write("How far up?: ")
+else io.write("How far down?: ") end
 yDisp = io.read()
 
-if isQuarry == "Pillar" then
-    goingUp = true
-else
-    goingUp = false
-end
+if string.lower(isQuarry) == "u" then goingUp = true
+else goingUp = false end
 
-]]--
+
 
 function screenWriting(screenText)
     term.clear()
@@ -77,8 +76,8 @@ local currentFacing = FaceForwardFromStart
 -- variables that shouldnt need to be variables, but are so that debugging things is easier
 local invSize = 5
 local goingUp = false
--- local sides, depth = sSize, yDisp
-local sides, depth = 5, 5
+local sides, depth = sSize, yDisp -- length of the sides, how far down or up
+-- local sides, depth = 5, 5
 
 
 
@@ -386,6 +385,7 @@ function mineForward()
 
     if turtle.detectUp() then
         if turtle.digUp() then
+            collect()
 -- todo            writeToLog("353: dug up")
             if not canCollectMore then
                 returnToBase()
@@ -395,6 +395,7 @@ function mineForward()
 
     if turtle.detectDown() then
         if turtle.digDown() then
+            collect()
             if not canCollectMore then
                 returnToBase()
             end
