@@ -387,21 +387,18 @@ function squareLogic(sideLength)
             mineForward()
         end
 
+        moveToLocZ(0)
+
         -- turning code here
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
             faceDirection(FaceRightFromStart)
             mineForward()
-            if(currentLoc[1]%2==0) then
-                writeToLog("395: Face Forward")
-                faceDirection(FaceForwardFromStart)
-            else
-                writeToLog("398: Face Back")
-                faceDirection(FaceBackwardFromStart)
-            end
+            writeToLog("395: Face Forward")
+            faceDirection(FaceForwardFromStart)
         end
     end
     moveToLocX(0)
-    moveToLocZ(0)
+--    moveToLocZ(0) -- should not be needed
     moveToLocY(0)
 
     faceDirection(FaceBackwardFromStart)
