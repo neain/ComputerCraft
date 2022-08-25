@@ -404,6 +404,7 @@ function squareLogic(sideLength)
         writeToLog("404: currentLoc[1]<sideLength-1(" .. currentLoc[1] .. "," .. (sideLength-1) .. ")")
         while currentLoc[3]<sideLength-1 do -- while z is not our length
             writeToLog("406: currentLoc[3]<sideLength-1(" .. currentLoc[3] .. "," .. (sideLength-1) .. ")")
+            faceDirection(FaceForwardFromStart)
             mineForward()
         end
 
