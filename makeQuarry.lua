@@ -401,7 +401,9 @@ end
 function squareLogic(sideLength)
     writeToLog("383: SquareLogic start("..sideLength..")")
     while currentLoc[1]<sideLength-1 do --while x is not our length 
+        writeToLog("404: currentLoc[1]<sideLength-1(" .. currentLoc[1] .. "," .. (sideLength-1) .. ")")
         while currentLoc[3]<sideLength-1 do -- while z is not our length
+            writeToLog("406: currentLoc[3]<sideLength-1(" .. currentLoc[3] .. "," .. (sideLength-1) .. ")")
             mineForward()
         end
 
@@ -437,11 +439,15 @@ function devastate(length, height)
         -- first make sure we are on the correct Y level
         if goingUp then
             while currentLoc[2]<yCurrent do
-                goDown()
+                if goDown() then
+                    yCurrent=yCurrent+1
+                end
             end
         else
             while currentLoc[2]<yCurrent do
-                goUp()
+                if goUp() then
+                    yCurrent=yCurrent+1
+                end
             end
         end
 
