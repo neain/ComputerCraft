@@ -441,18 +441,20 @@ function devastate(length, height)
     writeToLog("417: devastate| (" .. length .. "," .. height .. ")" )
     local yCurrent = 0
     while yCurrent<height do
-        writeToLog("444: yCurrent height CurrentLoc[Y] (" .. yCurrent .. "," .. height .. currentLoc[2] .. ")")
+        writeToLog("444: yCurrent height CurrentLoc[Y] (" .. yCurrent .. "," .. height .. "," .. currentLoc[2] .. ")")
         writeToLog("445: goingUp is (" .. tostring(goingUp) .. ")")
         -- first make sure we are on the correct Y level
         if goingUp then
             while currentLoc[2]<yCurrent do
-                if goDown() then
+                if goUp() then
                     yCurrent=yCurrent+1
                 end
             end
         else
+            writeToLog("454: inside the else")
+            writeToLog("455: currentLoc[Y], yCurrent (" .. currentLoc[2] .. yCurrent .. ")")
             while currentLoc[2]<yCurrent do
-                if goUp() then
+                if goDown() then
                     yCurrent=yCurrent+1
                 end
             end
