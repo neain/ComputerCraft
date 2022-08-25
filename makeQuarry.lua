@@ -377,6 +377,7 @@ function mineForward()
     if turtle.forward() then
         currentLoc[1] = currentLoc[1] + currentFacing[1]
         currentLoc[3] = currentLoc[3] + currentFacing[2]
+        screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
     end
 
     if turtle.detectUp() then
