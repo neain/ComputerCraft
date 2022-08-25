@@ -191,8 +191,8 @@ function returnToBase()
 
     writeToLog("190: return to where we saved x,y,z (" .. savedX .. "," .. savedY .. "," .. savedZ .. ")")
 
-    moveToLocZ(savedZ)
     moveToLocY(savedY)
+    moveToLocZ(savedZ)
     moveToLocX(savedX)
     
     faceDirection(savedDirection)
