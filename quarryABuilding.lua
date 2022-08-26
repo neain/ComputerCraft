@@ -1,4 +1,4 @@
-sides, floors = 5, 5
+sSize, floors = 5, 5
 
 term.clear()
 term.setCursorPos(1,1)
