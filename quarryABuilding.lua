@@ -39,9 +39,9 @@ function screenWriting(screenText)
     term.setCursorPos(1,1)
     io.write(screenText)
     term.setCursorPos(1,2)
-    io.write("Going to Y: " .. yDisp)
+    io.write("Number of Floors: " .. floors)
     term.setCursorPos(1,3)
-    io.write("Square size: " .. sSize)
+    io.write("Floor size: " .. sSize)
     term.setCursorPos(1,4)
 end
 -------------------
