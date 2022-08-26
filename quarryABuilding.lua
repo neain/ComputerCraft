@@ -92,16 +92,16 @@ local currentFacing = FaceForwardFromStart
 
 -- variables that shouldnt need to be variables, but are so that debugging things is easier
 local invSize = 14
---[[ local sides, depth = tonumber(sSize), tonumber(floorCount) -- length of the sides, how far down or up
-local stoneBetween = floorLayerCount
+--[[ local sides, floors = tonumber(sSize), tonumber(floorCount) -- length of the sides, how far down or up
+local floorThickness = floorLayerCount
 local airBetween = space ]]
 
 
-local sides, depth = 5, 5
-local stoneBetween = 1
+local sides, floors = 5, 5
+local floorThickness = 1
 local airBetween = 3
 
-local isolatedFloorSize = (stoneBetween + airBetween)
+local isolatedFloorSize = (floorThickness + airBetween)
 local easyTimes = math.floor(airBetween/3)
 local partialQuarrying = airBetween%3
 local numberOf 
@@ -534,10 +534,27 @@ function dumpTable(o)
 
  function makeFloor()
     local tiems = 0
-    while times < easyTimes do
-        devastate(sides, easyTimes*3)
+    for numberOfFloors = 1,floors do -- do this for each floor
+        while times < easyTimes do
+            devastate(sides, easyTimes*3) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
+            for i = 2,((easyTimes-1)*3 + partialQuarrying) do -- easytimes*3 is the air blocks we already made. partialQuarrying is how many more blocks we need to move to only clear 1 or 2 more layers.
+                goUp()
+            end
+            devastate(sides, 1) -- once this is done running, this will NOT be at a correct height. it will either be floorThickness + 3 away from where it needs to be, or (easyTimes-1)*3 + partialQuarrying + floorThickness away depending on the direction we are going
+                                -- it will be at the correct x and z though.
+            if goingUp then
+                for i=1,floorThickness+3 do
+                    goUp()
+                end
+            else
+                for i=1,((easyTimes-1)*3 + partialQuarrying + floorThickness) do
+                    goDown()
+                end
+            end
+            times = times + 1
+        end
 
-        times = times + 1
+
     end
  end
 
