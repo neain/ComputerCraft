@@ -98,9 +98,9 @@ local floorThickness = floorLayerCount
 local airBetween = space ]]
 
 
-local sides, floors = 5, 5
-local floorThickness = 1
-local airBetween = 6
+sides, floors = 5, 5
+floorThickness = 1
+airBetween = 6
 
 local isolatedFloorSize = (floorThickness + airBetween)
 local easyTimes = math.floor(airBetween/3)
