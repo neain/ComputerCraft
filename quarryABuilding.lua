@@ -107,6 +107,10 @@ local partialQuarrying = airBetween%3
 local numberOf 
 
 local goingUp
+
+-- TODO Temporary
+isQuarry = "u"
+
 if not string.lower(isQuarry) == "d" then 
     goingUp = true
 else 
