@@ -501,6 +501,7 @@ function devastate(length, height)
     local yCurrent = 0
     while yCurrent<height do
         -- first make sure we are on the correct Y level
+        writeToLog("504: goingUp? (" .. goingUp .. ")")
         if goingUp then
             while currentLoc[2]<yCurrent do
                 if goUp() then
