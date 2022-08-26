@@ -1,4 +1,4 @@
-sSize, floors = 5, 5
+
 
 term.clear()
 term.setCursorPos(1,1)
@@ -43,7 +43,7 @@ function screenWriting(screenText)
     term.setCursorPos(1,2)
     io.write("Number of Floors: " .. floors)
     term.setCursorPos(1,3)
-    io.write("Floor size: " .. sSize)
+    io.write("Floor size: " .. sides)
     term.setCursorPos(1,4)
 end
 -------------------
@@ -573,7 +573,7 @@ function dumpTable(o)
 -----------------------------
 -- Running Code Below Here --
 -----------------------------
-
+sides, floors = 5, 5
 
 faceDirection(FaceLeftFromStart)
 refreshFuel()
