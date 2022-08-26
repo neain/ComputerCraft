@@ -538,7 +538,7 @@ function dumpTable(o)
  end
 
  function makeFloor()
-    local tiems = 0
+    local times = 0
     for numberOfFloors = 1,floors do -- do this for each floor
         writeToLog("543: times,easyTimes (" .. times .. "," .. easyTimes .. ")")
         while times < easyTimes do
