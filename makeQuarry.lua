@@ -7,7 +7,7 @@ term.clear()
 term.setCursorPos(1,1)
 io.write("Length of a side: ")
 sSize = io.read()
-if sSize == nil then sSize = 5 end
+if sSize == nil then sSize = 16 end
 
 term.clear()
 term.setCursorPos(1,1)
@@ -23,6 +23,10 @@ function screenWriting(screenText)
     term.setCursorPos(1,1)
     io.write(screenText)
     term.setCursorPos(1,2)
+    io.write("Going to Y: " .. yDisp)
+    term.setCursorPos(1,3)
+    io.write("Square size: " .. sSize)
+    term.setCursorPos(1,4)
 end
 -------------------
 -- Logging Start --
@@ -129,7 +133,6 @@ function goUp()
     while not turtle.up() do
         if turtle.detectUp() then
             local junkData, nameOfBlockUp = turtle.inspectUp()
-            -- todo    writeToLog("Line 110 - DetectingUp: " .. nameOfBlockUp.name)
             screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
             if turtle.digUp() then
                 if not canCollectMore then
@@ -144,6 +147,7 @@ function goUp()
     currentLoc[2] = currentLoc[2]+1
     writeToLog("142: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
     screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
+
     return true
 end
 
