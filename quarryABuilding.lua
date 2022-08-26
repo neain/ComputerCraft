@@ -1,6 +1,12 @@
-term.clear()
 term.setCursorPos(1,1)
-io.write("going [u]p or [d]own?")
+io.write("Informaion: The first level bottom will be placed one lower than where the turtle is placed. The turtle clears forward, and to the right. Any blocks to the left of or behind the turtle will not be touched. Press enter to continue.")
+io.read()
+
+
+--[[ term.clear()
+
+term.setCursorPos(1,1)
+io.write("going [u]p or [d]own? ")
 isQuarry = io.read()
 
 term.clear()
@@ -12,11 +18,20 @@ if sSize == nil then sSize = 16 end
 term.clear()
 term.setCursorPos(1,1)
 if string.lower(isQuarry) == "u" 
-then io.write("How far up?: ")
-else 
-    io.write("How far down?: ") 
-end
-yDisp = io.read()
+io.write("How many floors?: ")
+floorCount = io.read()
+
+term.clear()
+term.setCursorPos(1,1)
+io.write("Empty space between floor and ceiling of each room (min of 3)? ")
+term.setCursorPos(1,2)
+space = io.read()
+
+term.clear()
+term.setCursorPos(1,1)
+io.write("How many layers does each floor have between air blocks? ")
+term.setCursorPos(1,2)
+floorLayerCount = io.read() ]]
 
 function screenWriting(screenText)
     term.clear()
@@ -77,16 +92,26 @@ local currentFacing = FaceForwardFromStart
 
 -- variables that shouldnt need to be variables, but are so that debugging things is easier
 local invSize = 14
-local sides, depth = tonumber(sSize), tonumber(yDisp) -- length of the sides, how far down or up
--- local sides, depth = 5, 5
+--[[ local sides, depth = tonumber(sSize), tonumber(floorCount) -- length of the sides, how far down or up
+local stoneBetween = floorLayerCount
+local airBetween = space ]]
+
+
+local sides, depth = 5, 5
+local stoneBetween = 1
+local airBetween = 3
+
+local isolatedFloorSize = (stoneBetween + airBetween)
+local easyTimes = math.floor(airBetween/3)
+local partialQuarrying = airBetween%3
+local numberOf 
 
 local goingUp
-if string.lower(isQuarry) == "u" then 
+if not string.lower(isQuarry) == "d" then 
     goingUp = true
 else 
     goingUp = false 
 end
-
 
 ----------------------------
 -- 'Global' Variables End --
@@ -500,6 +525,22 @@ function dumpTable(o)
        return tostring(o)
     end
  end
+
+ 
+ -- this is to make sure that the Y level is correct
+ function adjustYLevel()
+
+ end
+
+ function makeFloor()
+    local tiems = 0
+    while times < easyTimes do
+        devastate(sides, easyTimes*3)
+
+        times = times + 1
+    end
+ end
+
 -------------------
 -- Functions End --
 -------------------
@@ -522,7 +563,7 @@ if turtle.detectDown() then
 end
 
 faceDirection(FaceForwardFromStart)
-devastate(sides, depth)
+makeFloor()
 
 --[[ os.sleep(5)
 faceDirection(FaceRightFromStart)
