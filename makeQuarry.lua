@@ -145,7 +145,7 @@ function goUp()
         end
     end
     currentLoc[2] = currentLoc[2]+1
-    writeToLog("142: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
+    writeToLog("148: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
     screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
 
     return true
@@ -157,7 +157,6 @@ function goDown()
     while not turtle.down() do
         if turtle.detectDown() then
             local junkData, nameOfBlockDown = turtle.inspectDown()
-            -- todo    writeToLog("Line 130 - DetectingDown: " .. nameOfBlockDown.name)
             screenWriting("x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
             if turtle.digDown() then
                 if not canCollectMore then
@@ -170,7 +169,7 @@ function goDown()
         end
     end
     currentLoc[2] = currentLoc[2]-1
-    writeToLog("167: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
+    writeToLog("172: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
     screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
     return true
 end
@@ -179,7 +178,6 @@ end
 -- drops off all items
 -- returns to where it was, facing the direction it was
 function returnToBase()
-    writeToLog("167: returnToBase")
     local savedX, savedY, savedZ = currentLoc[1],currentLoc[2],currentLoc[3]
     local savedDirection = currentFacing
 
@@ -192,8 +190,6 @@ function returnToBase()
     faceDirection(FaceLeftFromStart)
     refreshFuel()
     faceDirection(FaceForwardFromStart)
-
-    writeToLog("190: return to where we saved x,y,z (" .. savedX .. "," .. savedY .. "," .. savedZ .. ")")
 
     moveToLocY(savedY)
     moveToLocZ(savedZ)
@@ -213,20 +209,15 @@ end
 
 -- turns the turtle until it faces the direction desired
 function faceDirection(faceDir)
-    -- todo    writeToLog("205: faceDirection = " .. dumpTable(faceDir))
     local displacement = currentFacing[3]-faceDir[3]
--- todo    writeToLog("203: displacement | " .. displacement)
     if displacement == 1 or displacement == -3 then
--- todo        writeToLog("205: should be turning left once")
         turtle.turnLeft()
     end
     if displacement == 2 or displacement == -2 then
--- todo        writeToLog("208: should be turning right twice")
         turtle.turnRight()
         turtle.turnRight()
     end
     if displacement == 3 or displacement == -1 then
--- todo        writeToLog("212: should be turning right once")
         turtle.turnRight()
     end
     currentFacing=faceDir
@@ -286,14 +277,12 @@ function moveWithoutMining()
     end
 
     if turtle.forward() then
--- todo        writeToLog("279: turtle moved forward")
         currentLoc[1] = currentLoc[1] + currentFacing[1]
         currentLoc[3] = currentLoc[3] + currentFacing[2]
         writeToLog("281: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
         screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
         return true
     else
-        writeToLog("286: failed to move forward.")
         return false
     end
 end
@@ -312,14 +301,12 @@ function moveWithoutMiningBack()
     end
 
     if turtle.back() then
--- todo        writeToLog("279: turtle moved backwards")
         currentLoc[1] = currentLoc[1] - currentFacing[1]
         currentLoc[3] = currentLoc[3] - currentFacing[2]
         writeToLog("311: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
         screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
         return true
     else
-        writeToLog("286: failed to move backwards.")
         return false
     end
 end
@@ -328,7 +315,6 @@ end
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocX(xGoing)
-    writeToLog("295: Started moveToLocX(" .. xGoing ..")" )
     local lDist = math.abs(xGoing-currentLoc[1])
 
     if xGoing > currentLoc[1] then
@@ -347,7 +333,6 @@ end
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocY(yGoing)
-    writeToLog("317: Started moveToLocY(" .. yGoing ..")" )
     local lDist = math.abs(yGoing-currentLoc[2])
 
     if yGoing > currentLoc[2] then
@@ -368,7 +353,6 @@ end
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocZ(zGoing)
-    writeToLog("338: Started moveToLocZ(" .. zGoing ..")" )
     local lDist = math.abs(zGoing-currentLoc[3])
 
     if zGoing > currentLoc[3] then
@@ -378,7 +362,6 @@ function moveToLocZ(zGoing)
     else
         return true
     end
--- todo    writeToLog("Facing the direction that it thinks it needs to go to get back to z(" .. zGoing ..")")
     for distance = 1,lDist do
         moveWithoutMining()
     end
@@ -387,8 +370,7 @@ end
 -- moves to z={zLoc} backwards without mining a block
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
-function moveToLocZ(zGoing)
-    writeToLog("358: Started moveToLocZ backwards(" .. zGoing ..")" )
+function moveBackToLocZ(zGoing)
     local lDist = math.abs(zGoing-currentLoc[3])
 
     if zGoing > currentLoc[3] then
@@ -398,7 +380,6 @@ function moveToLocZ(zGoing)
     else
         return true
     end
--- todo    writeToLog("Facing the direction that it thinks it needs to go to get back to z(" .. zGoing ..")")
     for distance = 1,lDist do
         moveWithoutMiningBack()
     end
@@ -406,12 +387,10 @@ end
 
 -- checks forward, if block, then mine, then move forward, if block above, mine above, if block below, mine below.
 function mineForward()
-    -- todo    writeToLog("352: mineForward start")
     if turtle.detect() then
         local junkData, nameOfBlock = turtle.inspect()
         if turtle.dig() then
             if not canCollectMore() then
-                -- todo    writeToLog("341: mineForward cantCollect More")
                 returnToBase()
             end
         end
@@ -438,7 +417,6 @@ function mineForward()
 
     if turtle.detectUp() then
         if turtle.digUp() then
--- todo            writeToLog("353: dug up")
             if not canCollectMore then
                 returnToBase()
             end
@@ -456,11 +434,8 @@ end
 
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
-    -- todo    writeToLog("383: SquareLogic start("..sideLength..")")
     while currentLoc[1] ~= sideLength do --while x is not our length 
-        -- todo    writeToLog("404: currentLoc[1]<sideLength-1(" .. currentLoc[1] .. "," .. (sideLength-1) .. ")")
         while currentLoc[3] ~= (sideLength-1) do -- while z is not our length
-            -- todo    writeToLog("406: currentLoc[3]<sideLength-1(" .. currentLoc[3] .. "," .. (sideLength-1) .. ")")
             faceDirection(FaceForwardFromStart)
             mineForward()
         end
@@ -469,18 +444,16 @@ function squareLogic(sideLength)
             break
         end
 
-        moveToLocZ(0) -- TODO: want to make a function so that it doesnt turn around
+        moveBackToLocZ(0)
 
         -- turning code here
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
             faceDirection(FaceRightFromStart)
             mineForward()
-            -- todo    writeToLog("395: Face Forward")
             faceDirection(FaceForwardFromStart)
         end
     end
 
--- todo    writeToLog("419: should be heading back to base")
     moveToLocX(0)
     moveToLocZ(0)
     moveToLocY(0)
@@ -495,11 +468,8 @@ end
 
 -- sets up the logic to mine a square, then change Y, and mine the next square
 function devastate(length, height)
-    writeToLog("417: devastate| (" .. length .. "," .. height .. ")" )
     local yCurrent = 0
     while yCurrent<height do
-        writeToLog("444: yCurrent height CurrentLoc[Y] (" .. yCurrent .. "," .. height .. "," .. currentLoc[2] .. ")")
-        writeToLog("445: goingUp is (" .. tostring(goingUp) .. ")")
         -- first make sure we are on the correct Y level
         if goingUp then
             while currentLoc[2]<yCurrent do
@@ -507,8 +477,6 @@ function devastate(length, height)
                 end
             end
         else
-            writeToLog("453: inside the else")
-            writeToLog("454: currentLoc[Y], yCurrent (" .. currentLoc[2] .. "," .. yCurrent .. ")")
             while math.abs(currentLoc[2])<yCurrent do
                 if goDown() then
 
