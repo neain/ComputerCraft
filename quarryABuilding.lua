@@ -540,7 +540,7 @@ function dumpTable(o)
  function makeFloor()
     local times = 0
     for numberOfFloors = 1,floors do -- do this for each floor
-        writeToLog("543: times,easyTimes (" .. times .. "," .. easyTimes .. ")")
+        writeToLog("543: times,easyTimes (" .. tostring(times) .. "," .. easyTimes .. ")")
         while times < easyTimes do
             devastate(sides, easyTimes*3) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
             for i = 2,((easyTimes-1)*3 + partialQuarrying) do -- easytimes*3 is the air blocks we already made. partialQuarrying is how many more blocks we need to move to only clear 1 or 2 more layers.
