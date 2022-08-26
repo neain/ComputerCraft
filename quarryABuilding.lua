@@ -109,17 +109,17 @@ local easyTimes = math.floor(airBetween/3)
 local partialQuarrying = airBetween%3
 local numberOf 
 
-local goingUp
+goingUp = true
 
 -- TODO Temporary
 isQuarry = "u"
 
-if not string.lower(isQuarry) == "d" then 
+--[[ if not string.lower(isQuarry) == "d" then 
     goingUp = true
 else 
     goingUp = false 
 end
-
+ ]]
 ----------------------------
 -- 'Global' Variables End --
 ----------------------------
