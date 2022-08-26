@@ -542,25 +542,25 @@ function dumpTable(o)
 
  function makeFloor()
     local times = 0
-    for numberOfFloors = 1,floors do -- do this for each floor
+    if goingUp then
+        ud = 1
+    else
+        ud=-1
+    end
+for numberOfFloors = 1,floors do -- do this for each floor
         writeToLog("543: times,easyTimes (" .. tostring(times) .. "," .. easyTimes .. ")")
         while times < easyTimes do
             devastate(sides, easyTimes*3) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
             for i = 2,((easyTimes-1)*3 + partialQuarrying) do -- easytimes*3 is the air blocks we already made. partialQuarrying is how many more blocks we need to move to only clear 1 or 2 more layers.
                 goUp()
             end
-            devastate(sides, 1) -- once this is done running, this will NOT be at a correct height. it will either be floorThickness + 3 away from where it needs to be, or (easyTimes-1)*3 + partialQuarrying + floorThickness away depending on the direction we are going
-                                -- it will be at the correct x and z though.
-            if goingUp then
-                for i=1,floorThickness+3 do
-                    goUp()
-                end
-            else
-                for i=1,((easyTimes-1)*3 + partialQuarrying + floorThickness) do
-                    goDown()
-                end
-            end
+            devastate(sides, 1) --[[ once this is done running, this will NOT be at a correct height. it will either be floorThickness + 3 away from where it needs to be, or (easyTimes-1)*3 + partialQuarrying + floorThickness away depending on the direction we are going
+            it will be at the correct x and z though. --]]
+
             times = times + 1
+            if(times<easyTimes) then
+                moveToLocY(times*isolatedFloorSize*ud) -- should be at exactly the correct location to start the next devastate
+            end
         end
 
 
