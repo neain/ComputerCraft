@@ -36,6 +36,14 @@ io.write("How many layers does each floor have between air blocks? ")
 term.setCursorPos(1,2)
 floorLayerCount = io.read()
 
+term.clear()
+term.setCursorPos(1,1)
+io.write("Skylights to prevent spawning during the day? ")
+term.setCursorPos(1,2)
+skyLights = io.read()
+
+
+
 function screenWriting(screenText)
     term.clear()
     term.setCursorPos(1,1)
@@ -543,7 +551,7 @@ function dumpTable(o)
     else
         ud=-1
     end
-    for numberOfFloors = 0,floors do -- do this for each floor
+    for numberOfFloors = 0,floors-1 do -- do this for each floor
         local times = 0
 --        while times < fullPasses do
             writeToLog("552: times,fullPasses (" .. tostring(times) .. "," .. fullPasses .. ")")
