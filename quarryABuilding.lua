@@ -83,17 +83,19 @@ function screenWriting(screenText)
     term.clear()
     term.setCursorPos(1,1)
     io.write(screenText)
-    term.setCursorPos(1,2)
-    io.write("Number of Floors: " .. (floorCount))
+    term.setCursorPos(1,)
+    io.write("Fuel Left: " .. turtle.getFuelLevel())
     term.setCursorPos(1,3)
-    io.write("Floor size: " .. sides)
+    io.write("Number of Floors: " .. (floorCount))
     term.setCursorPos(1,4)
-    io.write("Living Area: " .. space)
+    io.write("Floor size: " .. sides)
     term.setCursorPos(1,5)
-    io.write("Floor layers: " .. floorLayerCount)
+    io.write("Living Area: " .. space)
     term.setCursorPos(1,6)
-    io.write("Skylights: " .. skyLights)
+    io.write("Floor layers: " .. floorLayerCount)
     term.setCursorPos(1,7)
+    io.write("Skylights: " .. skyLights)
+    term.setCursorPos(1,8)
     
 end
 
@@ -496,7 +498,6 @@ function squareLogic(sideLength)
 
     moveToLocX(0)
     moveToLocZ(0)
--- todo    moveToLocY(0)
 end
 
 -- sets up the logic to mine a square, then change Y, and mine the next square
@@ -567,6 +568,7 @@ function dumpTable(o)
     moveToLocX(0)
     moveToLocZ(0)
     moveToLocY(0)
+    returnToBase()
  end
 
 -------------------
