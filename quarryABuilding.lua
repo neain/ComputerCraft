@@ -565,7 +565,8 @@ function dumpTable(o)
             if partialQuarrying>0 then
                 writeToLog("566: going to Y (" .. ((numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) .. ")")
                 writeToLog("567: numberOfFloors,isolatedFloorSize,ud,partialQuarrying,fullPasses  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. "," .. partialQuarrying .. "," .. fullPasses .. ")")
-                devastate(sides, 1, (numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) 
+                devastate(sides, 1, (numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+(fullPasses-1)*3) 
+                -- 0,8,1,2,1   - 0 + 2 + 3
             end
 
             times = times + 1
