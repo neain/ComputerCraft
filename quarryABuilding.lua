@@ -585,8 +585,6 @@ function dumpTable(o)
 -----------------------------
 -- Running Code Below Here --
 -----------------------------
-sides, floors = 5, 5
-
 faceDirection(FaceLeftFromStart)
 refreshFuel()
 refuel()
