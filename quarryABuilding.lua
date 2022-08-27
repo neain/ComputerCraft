@@ -105,7 +105,7 @@ floorThickness = 1
 airBetween = 6
 
 local isolatedFloorSize = (floorThickness + airBetween)
-local easyTimes = math.floor(airBetween/3)
+local fullPasses = math.floor(airBetween/3)
 local partialQuarrying = airBetween%3
 local numberOf 
 
@@ -499,16 +499,16 @@ end
 -- sets up the logic to mine a square, then change Y, and mine the next square
 function devastate(length, height, yStart)
     local yCurrent = 0
-    while yCurrent+yStart<height do
+    while yCurrent<height do
         -- first make sure we are on the correct Y level
         writeToLog("504: goingUp? (" .. tostring(goingUp) .. ")")
         if goingUp then
-            while currentLoc[2]<yCurrent do
+            while currentLoc[2]<yCurrent+yStart do
                 if goUp() then
                 end
             end
         else
-            while math.abs(currentLoc[2])<yCurrent do
+            while math.abs(currentLoc[2])<yCurrent+yStart do
                 if goDown() then
 
                 end
@@ -547,21 +547,18 @@ function dumpTable(o)
     else
         ud=-1
     end
-for numberOfFloors = 1,floors do -- do this for each floor
-        writeToLog("543: times,easyTimes (" .. tostring(times) .. "," .. easyTimes .. ")")
-        while times < easyTimes do
-            devastate(sides, easyTimes*3, numberOfFloors*isolatedFloorSize*ud) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
-            for i = 2,((easyTimes-1)*3 + partialQuarrying) do -- easytimes*3 is the air blocks we already made. partialQuarrying is how many more blocks we need to move to only clear 1 or 2 more layers.
-                goUp()
-            end
-            devastate(sides, 1, numberOfFloors*isolatedFloorSize*ud) --[[ once this is done running, this will NOT be at a correct height. it will either be floorThickness + 3 away from where it needs to be, or (easyTimes-1)*3 + partialQuarrying + floorThickness away depending on the direction we are going
+for numberOfFloors = 0,floors do -- do this for each floor
+        writeToLog("543: times,fullPasses (" .. tostring(times) .. "," .. fullPasses .. ")")
+        while times < fullPasses do
+            devastate(sides, fullPasses*3, numberOfFloors*isolatedFloorSize*ud) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
+            devastate(sides, 1, numberOfFloors*isolatedFloorSize*ud) --[[ once this is done running, this will NOT be at a correct height. it will either be floorThickness + 3 away from where it needs to be, or (fullPasses-1)*3 + partialQuarrying + floorThickness away depending on the direction we are going
             it will be at the correct x and z though. --]]
 
             times = times + 1
-            if(times<easyTimes) then
+--[[             if(times<fullPasses) then
                 moveToLocY(numberOfFloors*isolatedFloorSize*ud) -- should be at exactly the correct location to start the next devastate
             end
-        end
+ ]]        end
 
 
     end
