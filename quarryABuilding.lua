@@ -7,7 +7,7 @@ io.read()
 
 
 
-
+term.clear()
 term.setCursorPos(1,1)
 io.write("going [u]p or [d]own? ")
 isQuarry = io.read()
@@ -16,7 +16,9 @@ term.clear()
 term.setCursorPos(1,1)
 io.write("Length of a side: ")
 sSize = io.read()
-if sSize == nil then sSize = 16 end
+if sSize == nil then 
+    sSize = 16 
+end
 
 term.clear()
 term.setCursorPos(1,1)
@@ -26,19 +28,16 @@ floorCount = io.read()
 term.clear()
 term.setCursorPos(1,1)
 io.write("Empty space between floor and ceiling of each room (min of 3)? ")
-term.setCursorPos(1,2)
 space = io.read()
 
 term.clear()
 term.setCursorPos(1,1)
 io.write("How many layers does each floor have between air blocks? ")
-term.setCursorPos(1,2)
 floorLayerCount = io.read()
 
 term.clear()
 term.setCursorPos(1,1)
 io.write("Skylights to prevent spawning during the day? ")
-term.setCursorPos(1,2)
 skyLights = io.read()
 
 
