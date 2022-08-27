@@ -1,3 +1,32 @@
+-------------------
+-- Logging Start --
+-------------------
+
+local printToTurtle = true
+
+local logfile="/Logfile.txt" -- This is the destination where the logs and errors in writed.
+local file=fs.open(logfile, "w")
+file.writeLine("------------")
+file.writeLine("-- Log script by iRichard. Modified by Neain --")
+file.writeLine("Log created on day: "..os.day().." at "..textutils.formatTime(os.time(), timedate).." (in-game time).")
+file.writeLine("Computer ID: "..os.getComputerID())
+file.writeLine("------------")
+file.close() 
+
+function writeToLog(assasinText)
+    if printToTurtle then
+        print(assasinText)
+    end
+    
+    local file=fs.open(logfile, "a")
+    file.writeLine(assasinText)
+    file.close()
+end
+
+-----------------
+-- Logging End --
+-----------------
+
 term.clear()
 term.setCursorPos(1,1)
 io.write("Informaion: The first level bottom will be placed one lower than where the turtle is placed. The turtle clears forward, and to the right. Any blocks to the left of or behind the turtle will not be touched. Press enter to continue.")
@@ -10,11 +39,14 @@ isQuarry = io.read()
 
 goingUp = true
 
-if not string.lower(isQuarry) == "d" then 
+
+writeToLog("43: isQuarry(" .. string.lower(isQuarry) .. ")")
+if string.lower(isQuarry) == "u" then
     goingUp = true
 else 
     goingUp = false 
 end
+writeToLog("49: goingUp(" .. tostring(goingUp) .. ")")
 
 term.clear()
 term.setCursorPos(1,1)
@@ -51,39 +83,11 @@ function screenWriting(screenText)
     term.setCursorPos(1,1)
     io.write(screenText)
     term.setCursorPos(1,2)
-    io.write("Number of Floors: " .. floors)
+    io.write("Number of Floors: " .. floorCount)
     term.setCursorPos(1,3)
     io.write("Floor size: " .. sides)
     term.setCursorPos(1,4)
 end
--------------------
--- Logging Start --
--------------------
-
-local printToTurtle = true
-
-local logfile="/Logfile.txt" -- This is the destination where the logs and errors in writed.
-local file=fs.open(logfile, "w")
-file.writeLine("------------")
-file.writeLine("-- Log script by iRichard. Modified by Neain --")
-file.writeLine("Log created on day: "..os.day().." at "..textutils.formatTime(os.time(), timedate).." (in-game time).")
-file.writeLine("Computer ID: "..os.getComputerID())
-file.writeLine("------------")
-file.close() 
-
-function writeToLog(assasinText)
-    if printToTurtle then
-        print(assasinText)
-    end
-    
-    local file=fs.open(logfile, "a")
-    file.writeLine(assasinText)
-    file.close()
-end
-
------------------
--- Logging End --
------------------
 
 ------------------------------
 -- 'Global' Variables Start --
