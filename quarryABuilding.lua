@@ -20,7 +20,6 @@ if sSize == nil then sSize = 16 end
 
 term.clear()
 term.setCursorPos(1,1)
-if string.lower(isQuarry) == "u" 
 io.write("How many floors?: ")
 floorCount = io.read()
 
