@@ -73,7 +73,7 @@ floorLayerCount = io.read()
 
 term.clear()
 term.setCursorPos(1,1)
-io.write("Skylights to prevent spawning during the day? ")
+io.write("[y]es or [n]o. Skylights to prevent spawning during the day?  ")
 skyLights = io.read()
 
 
@@ -91,6 +91,8 @@ function screenWriting(screenText)
     term.setCursorPos(1,5)
     io.write("Floor size: " .. floorLayerCount)
     term.setCursorPos(1,6)
+    io.write("Skylights: " .. skyLights)
+    term.setCursorPos(1,7)
     
 end
 
@@ -556,9 +558,13 @@ function dumpTable(o)
     for numberOfFloors = 0,floors-1 do -- do this for each floor
         local times = 0
 --        while times < fullPasses do
-            writeToLog("552: times,fullPasses (" .. tostring(times) .. "," .. fullPasses .. ")")
+            writeToLog("561: going to Y (" .. (numberOfFloors*isolatedFloorSize*ud) .. ")")
+            writeToLog("562: numberOfFloors,isolatedFloorSize,ud  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. ")")
             devastate(sides, fullPasses*3, numberOfFloors*isolatedFloorSize*ud) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
+            writeToLog("564: partialQuarrying(" .. partialQuarrying .. ")")
             if partialQuarrying>0 then
+                writeToLog("566: going to Y (" .. ((numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) .. ")")
+                writeToLog("567: numberOfFloors,isolatedFloorSize,ud,partialQuarrying,fullPasses  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. "," .. partialQuarrying .. "," .. fullPasses .. ")")
                 devastate(sides, 1, (numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) 
             end
 
