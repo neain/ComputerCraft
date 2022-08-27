@@ -87,6 +87,11 @@ function screenWriting(screenText)
     term.setCursorPos(1,3)
     io.write("Floor size: " .. sides)
     term.setCursorPos(1,4)
+    io.write("Living Area: " .. space)
+    term.setCursorPos(1,5)
+    io.write("Floor size: " .. floorLayerCount)
+    term.setCursorPos(1,6)
+    
 end
 
 ------------------------------
