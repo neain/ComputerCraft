@@ -497,9 +497,9 @@ function squareLogic(sideLength)
 end
 
 -- sets up the logic to mine a square, then change Y, and mine the next square
-function devastate(length, height)
+function devastate(length, height, yStart)
     local yCurrent = 0
-    while yCurrent<height do
+    while yCurrent+yStart<height do
         -- first make sure we are on the correct Y level
         writeToLog("504: goingUp? (" .. tostring(goingUp) .. ")")
         if goingUp then
@@ -550,7 +550,7 @@ function dumpTable(o)
 for numberOfFloors = 1,floors do -- do this for each floor
         writeToLog("543: times,easyTimes (" .. tostring(times) .. "," .. easyTimes .. ")")
         while times < easyTimes do
-            devastate(sides, easyTimes*3) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
+            devastate(sides, easyTimes*3, numberOfFloors*isolatedFloorSize*ud) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
             for i = 2,((easyTimes-1)*3 + partialQuarrying) do -- easytimes*3 is the air blocks we already made. partialQuarrying is how many more blocks we need to move to only clear 1 or 2 more layers.
                 goUp()
             end
@@ -559,7 +559,7 @@ for numberOfFloors = 1,floors do -- do this for each floor
 
             times = times + 1
             if(times<easyTimes) then
-                moveToLocY(times*isolatedFloorSize*ud) -- should be at exactly the correct location to start the next devastate
+                moveToLocY(numberOfFloors*isolatedFloorSize*ud) -- should be at exactly the correct location to start the next devastate
             end
         end
 
