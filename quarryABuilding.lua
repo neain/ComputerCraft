@@ -495,15 +495,8 @@ function squareLogic(sideLength)
     end
 
     moveToLocX(0)
--- todo    moveToLocZ(0)
-    moveToLocY(0)
-
-    faceDirection(FaceBackwardFromStart)
-    depositAll()
-    faceDirection(FaceLeftFromStart)
-    refreshFuel()
-    faceDirection(FaceForwardFromStart)
-
+    moveToLocZ(0)
+-- todo    moveToLocY(0)
 end
 
 -- sets up the logic to mine a square, then change Y, and mine the next square
@@ -545,12 +538,6 @@ function dumpTable(o)
     end
  end
 
- 
- -- this is to make sure that the Y level is correct
- function adjustYLevel()
-
- end
-
  function makeFloor()
     if goingUp then
         ud = 1
@@ -576,6 +563,10 @@ function dumpTable(o)
 
 
     end
+
+    moveToLocX(0)
+    moveToLocZ(0)
+    moveToLocY(0)
  end
 
 -------------------
