@@ -1,16 +1,20 @@
-
-
 term.clear()
 term.setCursorPos(1,1)
 io.write("Informaion: The first level bottom will be placed one lower than where the turtle is placed. The turtle clears forward, and to the right. Any blocks to the left of or behind the turtle will not be touched. Press enter to continue.")
 io.read()
 
-
-
 term.clear()
 term.setCursorPos(1,1)
 io.write("going [u]p or [d]own? ")
 isQuarry = io.read()
+
+goingUp = true
+
+if not string.lower(isQuarry) == "d" then 
+    goingUp = true
+else 
+    goingUp = false 
+end
 
 term.clear()
 term.setCursorPos(1,1)
@@ -114,15 +118,6 @@ local isolatedFloorSize = (floorThickness + airBetween)
 local fullPasses = math.floor(airBetween/3)
 local partialQuarrying = airBetween%3
 local numberOf 
-
-goingUp = true
-
-if not string.lower(isQuarry) == "d" then 
-    goingUp = true
-else 
-    goingUp = false 
-end
-
 ----------------------------
 -- 'Global' Variables End --
 ----------------------------
