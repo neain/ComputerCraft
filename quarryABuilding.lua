@@ -90,7 +90,7 @@ function screenWriting(screenText)
     term.setCursorPos(1,4)
     io.write("Living Area: " .. space)
     term.setCursorPos(1,5)
-    io.write("Floor size: " .. floorLayerCount)
+    io.write("Floor layers: " .. floorLayerCount)
     term.setCursorPos(1,6)
     io.write("Skylights: " .. skyLights)
     term.setCursorPos(1,7)
@@ -495,7 +495,7 @@ function squareLogic(sideLength)
     end
 
     moveToLocX(0)
-    moveToLocZ(0)
+-- todo    moveToLocZ(0)
     moveToLocY(0)
 
     faceDirection(FaceBackwardFromStart)
