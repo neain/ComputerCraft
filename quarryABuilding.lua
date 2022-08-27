@@ -554,7 +554,7 @@ for numberOfFloors = 1,floors do -- do this for each floor
             for i = 2,((easyTimes-1)*3 + partialQuarrying) do -- easytimes*3 is the air blocks we already made. partialQuarrying is how many more blocks we need to move to only clear 1 or 2 more layers.
                 goUp()
             end
-            devastate(sides, 1) --[[ once this is done running, this will NOT be at a correct height. it will either be floorThickness + 3 away from where it needs to be, or (easyTimes-1)*3 + partialQuarrying + floorThickness away depending on the direction we are going
+            devastate(sides, 1, numberOfFloors*isolatedFloorSize*ud) --[[ once this is done running, this will NOT be at a correct height. it will either be floorThickness + 3 away from where it needs to be, or (easyTimes-1)*3 + partialQuarrying + floorThickness away depending on the direction we are going
             it will be at the correct x and z though. --]]
 
             times = times + 1
