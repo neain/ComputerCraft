@@ -60,6 +60,7 @@ term.clear()
 term.setCursorPos(1,1)
 io.write("How many floors?: ")
 floorCount = io.read()
+floorCount = floorCount - 1
 
 term.clear()
 term.setCursorPos(1,1)
@@ -83,7 +84,7 @@ function screenWriting(screenText)
     term.setCursorPos(1,1)
     io.write(screenText)
     term.setCursorPos(1,2)
-    io.write("Number of Floors: " .. floorCount)
+    io.write("Number of Floors: " .. (floorCount+1))
     term.setCursorPos(1,3)
     io.write("Floor size: " .. sides)
     term.setCursorPos(1,4)
@@ -514,12 +515,13 @@ function devastate(length, height, yStart)
         if goingUp then
             while currentLoc[2]<yCurrent+yStart do
                 if goUp() then
+                    turtle.digUp()
                 end
             end
         else
             while math.abs(currentLoc[2])<yCurrent+yStart do
                 if goDown() then
-
+                    turtle.digDown()
                 end
             end
         end
