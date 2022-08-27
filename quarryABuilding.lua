@@ -548,7 +548,7 @@ function dumpTable(o)
     end
     for numberOfFloors = 0,floors do -- do this for each floor
         local times = 0
-        while times < fullPasses do
+--        while times < fullPasses do
             writeToLog("552: times,fullPasses (" .. tostring(times) .. "," .. fullPasses .. ")")
             devastate(sides, fullPasses*3, numberOfFloors*isolatedFloorSize*ud) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
             if partialQuarrying>0 then
@@ -556,7 +556,7 @@ function dumpTable(o)
             end
 
             times = times + 1
-        end
+--        end
 
 
     end
