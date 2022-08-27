@@ -60,7 +60,7 @@ term.clear()
 term.setCursorPos(1,1)
 io.write("How many floors?: ")
 floorCount = io.read()
-floorCount = floorCount - 1
+-- floorCount = floorCount - 1
 
 term.clear()
 term.setCursorPos(1,1)
@@ -84,7 +84,7 @@ function screenWriting(screenText)
     term.setCursorPos(1,1)
     io.write(screenText)
     term.setCursorPos(1,2)
-    io.write("Number of Floors: " .. (floorCount+1))
+    io.write("Number of Floors: " .. (floorCount))
     term.setCursorPos(1,3)
     io.write("Floor size: " .. sides)
     term.setCursorPos(1,4)
