@@ -6,7 +6,7 @@ io.write("Informaion: The first level bottom will be placed one lower than where
 io.read()
 
 
---[[ 
+
 
 term.setCursorPos(1,1)
 io.write("going [u]p or [d]own? ")
@@ -34,7 +34,7 @@ term.clear()
 term.setCursorPos(1,1)
 io.write("How many layers does each floor have between air blocks? ")
 term.setCursorPos(1,2)
-floorLayerCount = io.read() ]]
+floorLayerCount = io.read()
 
 function screenWriting(screenText)
     term.clear()
@@ -95,14 +95,14 @@ local currentFacing = FaceForwardFromStart
 
 -- variables that shouldnt need to be variables, but are so that debugging things is easier
 local invSize = 14
---[[ local sides, floors = tonumber(sSize), tonumber(floorCount) -- length of the sides, how far down or up
-local floorThickness = floorLayerCount
-local airBetween = space ]]
+sides, floors = tonumber(sSize), tonumber(floorCount) -- length of the sides, how far down or up
+floorThickness = floorLayerCount
+airBetween = space
 
-
+--[[
 sides, floors = 5, 5
 floorThickness = 1
-airBetween = 6
+airBetween = 6 ]]
 
 local isolatedFloorSize = (floorThickness + airBetween)
 local fullPasses = math.floor(airBetween/3)
@@ -111,15 +111,12 @@ local numberOf
 
 goingUp = true
 
--- TODO Temporary
-isQuarry = "u"
-
---[[ if not string.lower(isQuarry) == "d" then 
+if not string.lower(isQuarry) == "d" then 
     goingUp = true
 else 
     goingUp = false 
 end
- ]]
+
 ----------------------------
 -- 'Global' Variables End --
 ----------------------------
