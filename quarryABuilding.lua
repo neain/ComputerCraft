@@ -480,6 +480,13 @@ function squareLogic(sideLength)
         while currentLoc[3] ~= (sideLength-1) do -- while z is not our length
             faceDirection(FaceForwardFromStart)
             mineForward()
+            if skyLights then
+                if currentLoc[1]%7==0 and currentLoc[3]%7==0 then
+                    currentY = currentLoc[2]
+                    moveToLocY(currentLoc[2]+isolatedFloorSize)
+                    moveToLocY(currentY)
+                end
+            end
         end
 
         if currentLoc[1] == sideLength-1 and currentLoc[3] == sideLength-1 then
