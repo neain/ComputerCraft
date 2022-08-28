@@ -75,7 +75,7 @@ floorLayerCount = io.read()
 term.clear()
 term.setCursorPos(1,1)
 io.write("[y]es or [n]o. Skylights to prevent spawning during the day?  ")
-skyLightQuestion = io.read()
+skyLightQuestion =  string.lower(io.read())
 
 if skyLightQuestion == "y" then
     skylights = true
@@ -489,7 +489,7 @@ function mineForward()
 end
 
 function runSkylightProtocolAlpha()
-    if currentLoc[1]%7==0 and currentLoc[3]%7==0 then
+    if currentLoc[1]%skyLightDistance==0 and currentLoc[3]%skyLightDistance==0 then
         currentY = currentLoc[2]
         moveToLocY(currentLoc[2]+isolatedFloorSize)
         moveToLocY(currentY)
