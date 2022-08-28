@@ -574,6 +574,7 @@ function dumpTable(o)
     moveToLocZ(0)
     moveToLocY(0)
     returnToBase()
+    faceDirection(FaceForwardFromStart)
  end
 
 -------------------
