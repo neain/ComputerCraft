@@ -514,7 +514,7 @@ function devastate(length, height, yStart)
                 end
             end
         else
-            while math.abs(currentLoc[2])<yCurrent+yStart+1 do
+            while math.abs(currentLoc[2])<yCurrent+yStart do
                 if goDown() then
                     turtle.digDown()
                 end
@@ -541,9 +541,11 @@ function dumpTable(o)
  end
 
  function makeFloor()
+    downAdjustment = 0
     if goingUp then
         ud = 1
     else
+        downAdjustment = 1
         ud=-1
     end
     for numberOfFloors = 0,floors-1 do -- do this for each floor
@@ -551,12 +553,12 @@ function dumpTable(o)
 --        while times < fullPasses do
             writeToLog("561: going to Y (" .. (numberOfFloors*isolatedFloorSize*ud) .. ")")
             writeToLog("562: numberOfFloors,isolatedFloorSize,ud  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. ")")
-            devastate(sides, fullPasses*3, numberOfFloors*isolatedFloorSize*ud) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
+            devastate(sides, fullPasses*3, numberOfFloors*isolatedFloorSize*ud+downAdjustment) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
             writeToLog("564: partialQuarrying(" .. partialQuarrying .. ")")
             if partialQuarrying>0 then
                 writeToLog("566: going to Y (" .. ((numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) .. ")")
                 writeToLog("567: numberOfFloors,isolatedFloorSize,ud,partialQuarrying,fullPasses  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. "," .. partialQuarrying .. "," .. fullPasses .. ")")
-                devastate(sides, 1, (numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+(fullPasses-1)*3) 
+                devastate(sides, 1, (numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+(fullPasses-1)*3+downAdjustment) 
                 -- 0,8,1,2,1   - 0 + 2 + 3
             end
 
