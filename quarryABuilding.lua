@@ -93,6 +93,10 @@ if skyLights then
     skyLightDistance = tonumber(io.read())
 end
 
+if skyLightDistance == nil then
+    skyLightDistance = 7
+end
+
 
 
 function screenWriting(screenText)
