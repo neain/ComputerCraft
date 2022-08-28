@@ -75,7 +75,21 @@ floorLayerCount = io.read()
 term.clear()
 term.setCursorPos(1,1)
 io.write("[y]es or [n]o. Skylights to prevent spawning during the day?  ")
-skyLights = io.read()
+skyLightQuestion = io.read()
+
+if skyLightQuestion == "y" then
+    skylights = true
+else
+    skyLights = false
+end
+
+skyLightDistance = 7
+if skyLights then
+    term.clear()
+    term.setCursorPos(1,1)
+    io.write("7 is the default. Distance between skylights?  ")
+    skyLightDistance = tonumber(io.read())
+end
 
 
 
@@ -94,7 +108,7 @@ function screenWriting(screenText)
     term.setCursorPos(1,6)
     io.write("Floor layers: " .. floorLayerCount)
     term.setCursorPos(1,7)
-    io.write("Skylights: " .. skyLights)
+    io.write("Skylights: " .. skyLightQuestion)
     term.setCursorPos(1,8)
     
 end
@@ -474,6 +488,14 @@ function mineForward()
     end
 end
 
+function runSkylightProtocolAlpha()
+    if currentLoc[1]%7==0 and currentLoc[3]%7==0 then
+        currentY = currentLoc[2]
+        moveToLocY(currentLoc[2]+isolatedFloorSize)
+        moveToLocY(currentY)
+    end
+end
+
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
     while currentLoc[1] ~= sideLength do --while x is not our length 
@@ -481,11 +503,7 @@ function squareLogic(sideLength)
             faceDirection(FaceForwardFromStart)
             mineForward()
             if skyLights then
-                if currentLoc[1]%7==0 and currentLoc[3]%7==0 then
-                    currentY = currentLoc[2]
-                    moveToLocY(currentLoc[2]+isolatedFloorSize)
-                    moveToLocY(currentY)
-                end
+                runSkylightProtocolAlpha()
             end
         end
 
@@ -499,6 +517,9 @@ function squareLogic(sideLength)
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
             faceDirection(FaceRightFromStart)
             mineForward()
+            if skyLights then
+                runSkylightProtocolAlpha()
+            end
             faceDirection(FaceForwardFromStart)
         end
     end
