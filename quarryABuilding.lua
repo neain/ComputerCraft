@@ -77,12 +77,14 @@ term.setCursorPos(1,1)
 io.write("[y]es or [n]o. Skylights to prevent spawning during the day?  ")
 skyLightQuestion =  string.lower(io.read())
 
+writeToLog("80: skyLightQuestion(" .. skyLightQuestion .. ")")
 if skyLightQuestion == "y" then
-    skylights = true
+    skyLights = true
 else
     skyLights = false
 end
 
+writeToLog("87: skyLights(" .. skyLightQuestion .. ")")
 skyLightDistance = 7
 if skyLights then
     term.clear()
