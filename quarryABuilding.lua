@@ -514,7 +514,8 @@ function devastate(length, height, yStart)
                 end
             end
         else
-            while currentLoc[2]>(yCurrent+yStart)*-1 do
+            writeToLog("517: currentLoc[y]>math (" .. currentLoc[2] .. "," .. (yCurrent+yStart)*-1 .. ")")
+            while currentLoc[2]>(yCurrent+yStart) do
                 if goDown() then
                     turtle.digDown()
                 end
