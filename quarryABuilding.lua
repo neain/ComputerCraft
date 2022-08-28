@@ -506,7 +506,7 @@ function devastate(length, height, yStart)
     local yCurrent = 0
     while yCurrent<height do
         -- first make sure we are on the correct Y level
-        writeToLog("509: length, height, yStart (" .. length .. "," .. height .. "," .. yStart .. "," .. ")")
+        writeToLog("509: length, height, yStart (" .. length .. "," .. height .. "," .. yStart .. ")")
         if goingUp then
             while currentLoc[2]<yCurrent+yStart do
                 if goUp() then
@@ -514,7 +514,7 @@ function devastate(length, height, yStart)
                 end
             end
         else
-            while math.abs(currentLoc[2])<yCurrent+yStart do
+            while currentLoc[2]>(yCurrent+yStart)*-1 do
                 if goDown() then
                     turtle.digDown()
                 end
@@ -525,6 +525,9 @@ function devastate(length, height, yStart)
         squareLogic(length)
         yCurrent = yCurrent + 3
     end
+    writeToLog("---------------------------------------------")
+    writeToLog("529: End of a devastate")
+    writeToLog("---------------------------------------------")
 end
 
 function dumpTable(o)
@@ -549,13 +552,13 @@ function dumpTable(o)
     for numberOfFloors = 0,floors-1 do -- do this for each floor
         local times = 0
 --          5 floors, 4,
-            writeToLog("554: going to Y (" .. (numberOfFloors*isolatedFloorSize*ud) .. ")")
-            writeToLog("555: numberOfFloors,isolatedFloorSize,ud  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. ")")
+            writeToLog("555: going to Y (" .. (numberOfFloors*isolatedFloorSize*ud) .. ")")
+            writeToLog("556: numberOfFloors,isolatedFloorSize,ud  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. ")")
             devastate(sides, fullPasses*3, numberOfFloors*isolatedFloorSize*ud) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
-            writeToLog("557: partialQuarrying(" .. partialQuarrying .. ")")
+            writeToLog("558: partialQuarrying(" .. partialQuarrying .. ")")
             if partialQuarrying>0 then
-                writeToLog("559: going to Y (" .. ((numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) .. ")")
-                writeToLog("560: numberOfFloors,isolatedFloorSize,ud,partialQuarrying,fullPasses  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. "," .. partialQuarrying .. "," .. fullPasses .. ")")
+                writeToLog("560: going to Y (" .. ((numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) .. ")")
+                writeToLog("561: numberOfFloors,isolatedFloorSize,ud,partialQuarrying,fullPasses  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. "," .. partialQuarrying .. "," .. fullPasses .. ")")
                 devastate(sides, 1, (numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+(fullPasses-1)*3) 
                 -- 0,8,1,2,1   - 0 + 2 + 3
             end
