@@ -102,6 +102,50 @@ function checkForOre()
     
 end
 
+-- checks forward, if block, then mine, then move forward, if block above, mine above, if block below, mine below.
+function mineForward()
+    while turtle.detect() do
+        if turtle.dig() then
+            if not canCollectMore() then
+                returnToBase()
+            end
+        end
+    end
+    
+    -- just making sure that the turtle doesnt run off again
+    if currentLoc[1]<-1 then
+        writeToLog("263: Turtle went into -X area")
+        os.exit()
+    end
+    if currentLoc[3]<-1 then
+        writeToLog("267: Turtle went into -Z area")
+        os.exit()
+    end
+
+
+
+    if turtle.forward() then
+        currentLoc[1] = currentLoc[1] + currentFacing[1]
+        currentLoc[3] = currentLoc[3] + currentFacing[2]
+        screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
+    end
+
+    if turtle.detectUp() then
+        if turtle.digUp() then
+            if not canCollectMore then
+                returnToBase()
+            end
+        end
+    end
+
+    if turtle.detectDown() then
+        if turtle.digDown() then
+            if not canCollectMore then
+                returnToBase()
+            end
+        end
+    end
+end
 -------------------
 -- Functions End --
 -------------------

@@ -501,6 +501,7 @@ function squareLogic(sideLength)
 end
 
 -- sets up the logic to mine a square, then change Y, and mine the next square
+-- 5, 3, 3
 function devastate(length, height, yStart)
     local yCurrent = 0
     while yCurrent<height do
@@ -513,7 +514,7 @@ function devastate(length, height, yStart)
                 end
             end
         else
-            while math.abs(currentLoc[2])<yCurrent+yStart do
+            while math.abs(currentLoc[2])<yCurrent+yStart+1 do
                 if goDown() then
                     turtle.digDown()
                 end
