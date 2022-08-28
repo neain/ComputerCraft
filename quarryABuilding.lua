@@ -506,7 +506,7 @@ function devastate(length, height, yStart)
     local yCurrent = 0
     while yCurrent<height do
         -- first make sure we are on the correct Y level
-        writeToLog("504: goingUp? (" .. tostring(goingUp) .. ")")
+        writeToLog("509: length, height, yStart (" .. length .. "," .. height .. "," .. yStart .. "," .. ")")
         if goingUp then
             while currentLoc[2]<yCurrent+yStart do
                 if goUp() then
@@ -541,24 +541,22 @@ function dumpTable(o)
  end
 
  function makeFloor()
-    downAdjustment = 0
     if goingUp then
         ud = 1
     else
-        downAdjustment = 1
         ud=-1
     end
     for numberOfFloors = 0,floors-1 do -- do this for each floor
         local times = 0
---        while times < fullPasses do
-            writeToLog("561: going to Y (" .. (numberOfFloors*isolatedFloorSize*ud) .. ")")
-            writeToLog("562: numberOfFloors,isolatedFloorSize,ud  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. ")")
-            devastate(sides, fullPasses*3, numberOfFloors*isolatedFloorSize*ud+downAdjustment) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
-            writeToLog("564: partialQuarrying(" .. partialQuarrying .. ")")
+--          5 floors, 4,
+            writeToLog("554: going to Y (" .. (numberOfFloors*isolatedFloorSize*ud) .. ")")
+            writeToLog("555: numberOfFloors,isolatedFloorSize,ud  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. ")")
+            devastate(sides, fullPasses*3, numberOfFloors*isolatedFloorSize*ud) -- once this is done running, we are at the Y of the floor +1, and most of the area is cleared (all if a multiple of three)
+            writeToLog("557: partialQuarrying(" .. partialQuarrying .. ")")
             if partialQuarrying>0 then
-                writeToLog("566: going to Y (" .. ((numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) .. ")")
-                writeToLog("567: numberOfFloors,isolatedFloorSize,ud,partialQuarrying,fullPasses  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. "," .. partialQuarrying .. "," .. fullPasses .. ")")
-                devastate(sides, 1, (numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+(fullPasses-1)*3+downAdjustment) 
+                writeToLog("559: going to Y (" .. ((numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+fullPasses*3) .. ")")
+                writeToLog("560: numberOfFloors,isolatedFloorSize,ud,partialQuarrying,fullPasses  (" .. numberOfFloors .. "," .. isolatedFloorSize .. "," .. ud .. "," .. partialQuarrying .. "," .. fullPasses .. ")")
+                devastate(sides, 1, (numberOfFloors*isolatedFloorSize*ud)+partialQuarrying+(fullPasses-1)*3) 
                 -- 0,8,1,2,1   - 0 + 2 + 3
             end
 
