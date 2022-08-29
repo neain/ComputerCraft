@@ -252,6 +252,7 @@ function returnToBase()
     faceDirection(FaceBackwardFromStart)
     depositAll()
     faceDirection(FaceLeftFromStart)
+    refuel()
     refreshFuel()
     faceDirection(FaceForwardFromStart)
 
@@ -293,7 +294,7 @@ end
 function refuel()
     -- checking that the turtle isnt above 90k. if it is... we need nothing
     if turtle.getFuelLevel()>90000 then
-        return
+        return true
     end
 
     for lookingForEdibles = 1,invSize do
@@ -301,6 +302,10 @@ function refuel()
         turtle.refuel(turtle.getItemCount())
     end
     turtle.select(1)
+
+    if turtle.getFuelLevel()>90000 then
+        return false
+    end
 end
 
 -- turns to the left and grabs a stack. LEFT SHOULD BE A BOX OF FUEL.
@@ -322,6 +327,7 @@ end
 
 -- checks if there is enough fuel for this level of square.     
 function checkFuel(squareSize)
+    refuel()
     if turtle.getFuelLevel() < squareSize*squareSize*currentLoc[2] then
         refreshFuel()
     end
