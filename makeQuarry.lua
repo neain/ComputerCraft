@@ -460,6 +460,7 @@ function squareLogic(sideLength)
     depositAll()
     faceDirection(FaceLeftFromStart)
     refreshFuel()
+    refuel()
     faceDirection(FaceForwardFromStart)
 
 end
