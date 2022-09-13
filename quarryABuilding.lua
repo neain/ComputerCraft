@@ -1,3 +1,9 @@
+--[[
+Informaion: The first level bottom will be placed one lower than where the turtle is placed. 
+The turtle clears forward, and to the right. Any blocks to the left of or behind the 
+turtle will not be touched.
+]]
+
 -------------------
 -- Logging Start --
 -------------------
@@ -26,11 +32,6 @@ end
 -----------------
 -- Logging End --
 -----------------
-
-term.clear()
-term.setCursorPos(1,1)
-io.write("Informaion: The first level bottom will be placed one lower than where the turtle is placed. The turtle clears forward, and to the right. Any blocks to the left of or behind the turtle will not be touched. Press enter to continue.")
-io.read()
 
 term.clear()
 term.setCursorPos(1,1)
