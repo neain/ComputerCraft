@@ -27,7 +27,9 @@ function screenWriting(screenText)
     term.setCursorPos(1,3)
     io.write("Square size: " .. sSize)
     term.setCursorPos(1,4)
+    io.write("Fuel Left: " .. turtle.getFuelLevel())
 end
+
 -------------------
 -- Logging Start --
 -------------------
