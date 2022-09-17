@@ -43,7 +43,7 @@ end
 bridgeDistance = 64
 for bridgeDistance=0,64 do
     screenWriting("Moved: " .. bridgeDistance)
-    if turtle.forward() do
+    if turtle.forward() then
         turtle.placeDown()
     else
         for goBack=0, bridgeDistance do
