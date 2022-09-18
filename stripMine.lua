@@ -25,10 +25,8 @@ function screenWriting(screenText)
     term.setCursorPos(1,1)
     io.write(screenText)
     term.setCursorPos(1,2)
-    io.write("Going to Y: " .. yDisp)
-    term.setCursorPos(1,3)
     io.write("Square size: " .. sSize)
-    term.setCursorPos(1,4)
+    term.setCursorPos(1,3)
     io.write("Fuel Left: " .. turtle.getFuelLevel())
 end
 

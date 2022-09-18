@@ -1,0 +1,6 @@
+cobblestoneQuarry   - https://raw.githubusercontent.com/neain/ComputerCraft/main/cobblestoneQuarry.lua
+makeQuarry          - https://raw.githubusercontent.com/neain/ComputerCraft/main/makeQuarry.lua
+quarryABuilding     - https://raw.githubusercontent.com/neain/ComputerCraft/main/quarryABuilding.lua
+shearSingleSheep    - https://raw.githubusercontent.com/neain/ComputerCraft/main/shearSingleSheep.lua
+shortBridge         - https://raw.githubusercontent.com/neain/ComputerCraft/main/shortBridge.lua
+stripMine           - https://raw.githubusercontent.com/neain/ComputerCraft/main/stripMine.lua
