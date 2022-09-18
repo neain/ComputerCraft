@@ -237,24 +237,6 @@ function moveToLocZ(zGoing)
     end
 end
 
--- moves to z={zLoc} backwards and mines every block
--- returns true if it can move to that location
--- returns false if anything gets in the way
-function moveBackToLocZ(zGoing)
-    local lDist = math.abs(zGoing-currentLoc[3])
-
-    if zGoing > currentLoc[3] then
-        faceDirection(FaceBackwardFromStart)
-    elseif zGoing < currentLoc[3] then
-        faceDirection(FaceForwardFromStart)
-    else
-        return true
-    end
-    for distance = 1,lDist do
-        mineForward()
-    end
-end
-
 -- checks forward, if block, then mine, then move forward, if block above, mine above, if block below, mine below.
 function mineForward()
     while turtle.detect() do
@@ -314,7 +296,7 @@ function squareLogic(sideLength)
             break
         end
 
-        moveBackToLocZ(0)
+        moveToLocZ(0)
 
         -- turning code here. Need to mine 3 blocks and then turn left
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
