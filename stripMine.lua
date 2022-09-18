@@ -1,4 +1,6 @@
 --[[
+    Assumptions: a stack of torches in the final slot
+
     This program is meant to make a strip mine. only a single level, looking from above it should look somthing like
     x = stone
     | = mined out portion
@@ -290,14 +292,21 @@ function mineForward()
     end
 end
 
+function runTorchProtocolAlpha()
+    if (currentLoc[1]-1) % 4==0 and (currentLoc[3]-1) % 13==0 then
+        turtle.select(16)
+        turtle.placeDown()
+        turtle.select(1)
+    end
+end
+
 -- sets up the logic to mine in a square for each Y level
 function squareLogic(sideLength)
     while currentLoc[1] ~= sideLength do --while x is not our length 
         while currentLoc[3] ~= (sideLength-1) do -- while z is not our length
             faceDirection(FaceForwardFromStart)
             mineForward()
-            writeToLog("about to check current location")
-            writeToLog("currentLoc[3], sideLength-1 (" .. currentLoc[3] .. "," .. (sideLength-1) .. ")")
+            runTorchProtocolAlpha()
         end
 
         if currentLoc[1] == sideLength-1 and currentLoc[3] == sideLength-1 then
@@ -328,6 +337,8 @@ function squareLogic(sideLength)
     faceDirection(FaceForwardFromStart)
 
 end
+
+
 
 function dumpTable(o)
     if type(o) == 'table' then
