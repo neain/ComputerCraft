@@ -306,9 +306,10 @@ function squareLogic(sideLength)
 
         moveToLocZ(0)
 
-        -- turning code here. Need to mine 3 blocks and then turn left
+        -- turning code here. Need to mine 4 blocks and then turn left
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
             faceDirection(FaceRightFromStart)
+            mineForward()
             mineForward()
             mineForward()
             mineForward()
