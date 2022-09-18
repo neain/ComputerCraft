@@ -290,10 +290,14 @@ function mineForward()
             end
         end
     end
+    runTorchProtocolAlpha()
 end
 
 function runTorchProtocolAlpha()
+    writeToLog("CurrentLoc[1], CurrentLoc[3](" .. currentLoc[1] .. "," .. currentLoc[3] .. ")")
     if (currentLoc[1]-1) % 4==0 and (currentLoc[3]-1) % 13==0 then
+        writeToLog("Inside the if statement")
+        writeToLog("CurrentLoc[1], CurrentLoc[3](" .. currentLoc[1] .. "," .. currentLoc[3] .. ")")
         turtle.select(16)
         turtle.placeDown()
         turtle.select(1)
