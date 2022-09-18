@@ -248,19 +248,19 @@ function mineForward()
     end
     
     -- just making sure that the turtle doesnt run off again
-    if currentLoc[1]<-1 then
+    if currentLoc[1] < -1 then
         writeToLog("263: Turtle went into -X area")
         os.exit()
     end
-    if currentLoc[3]<-1 then
+    if currentLoc[3] < -1 then
         writeToLog("267: Turtle went into -Z area")
         os.exit()
     end
-    if currentLoc[1]> (sides+3) then
+    if currentLoc[1] > (sides+3) then
         writeToLog("263: Turtle went too far into X area")
         os.exit()
     end
-    if currentLoc[3]< (sides+3) then
+    if currentLoc[3] > (sides+3) then
         writeToLog("267: Turtle went too far into Z area")
         os.exit()
     end
