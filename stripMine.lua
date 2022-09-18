@@ -330,6 +330,8 @@ function squareLogic(sideLength)
         while currentLoc[3] ~= (sideLength-1) do -- while z is not our length
             faceDirection(FaceForwardFromStart)
             mineForward()
+            writeToLog("about to check current location")
+            writeToLog("currentLoc[3], sideLength-1 (" .. currentLoc[3] .. "," .. (sideLength-1) .. ")")
         end
 
         if currentLoc[1] == sideLength-1 and currentLoc[3] == sideLength-1 then
