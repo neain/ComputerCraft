@@ -201,30 +201,6 @@ function refreshFuel()
     return true
 end
 
--- moves one block forward without trying to mine anything
--- returns false if it cant move
-function moveWithoutMining()
-    -- just making sure that the turtle doesnt run off again
-    if currentLoc[1]<-1 then
-        writeToLog("270: Turtle went into -X area")
-        os.exit()
-    end
-    if currentLoc[3]<-1 then
-        writeToLog("270: Turtle went into -Z area")
-        os.exit()
-    end
-
-    if turtle.forward() then
-        currentLoc[1] = currentLoc[1] + currentFacing[1]
-        currentLoc[3] = currentLoc[3] + currentFacing[2]
-        writeToLog("281: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
-        screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
-        return true
-    else
-        return false
-    end
-end
-
 -- moves to x={xLoc} and mines every block
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
