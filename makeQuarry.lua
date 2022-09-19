@@ -265,55 +265,7 @@ function checkFuel(squareSize)
     end
 end
 
--- moves one block forward without trying to mine anything
--- returns false if it cant move
-function moveWithoutMining()
-    -- just making sure that the turtle doesnt run off again
-    if currentLoc[1]<-1 then
-        writeToLog("270: Turtle went into -X area")
-        os.exit()
-    end
-    if currentLoc[3]<-1 then
-        writeToLog("270: Turtle went into -Z area")
-        os.exit()
-    end
-
-    if turtle.forward() then
-        currentLoc[1] = currentLoc[1] + currentFacing[1]
-        currentLoc[3] = currentLoc[3] + currentFacing[2]
-        writeToLog("281: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
-        screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
-        return true
-    else
-        return false
-    end
-end
-
--- moves one block backwards without trying to mine anything
--- returns false if it cant move
-function moveWithoutMiningBack()
-    -- just making sure that the turtle doesnt run off again
-    if currentLoc[1]<-1 then
-        writeToLog("270: Turtle went into -X area")
-        os.exit()
-    end
-    if currentLoc[3]<-1 then
-        writeToLog("270: Turtle went into -Z area")
-        os.exit()
-    end
-
-    if turtle.back() then
-        currentLoc[1] = currentLoc[1] - currentFacing[1]
-        currentLoc[3] = currentLoc[3] - currentFacing[2]
-        writeToLog("311: Turtle at (" .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3] ..")")
-        screenWriting("Turtle at x,y,z: " .. currentLoc[1] .. "," .. currentLoc[2] .. "," .. currentLoc[3])
-        return true
-    else
-        return false
-    end
-end
-
--- moves to x={xLoc} without mining a block
+-- moves to x={xLoc} and mines all blocks
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocX(xGoing)
@@ -327,7 +279,7 @@ function moveToLocX(xGoing)
         return true
     end
     for distance = 1,lDist do
-        moveWithoutMining()
+        mineForward()
     end
 end
 
@@ -351,7 +303,7 @@ function moveToLocY(yGoing)
     end
 end
 
--- moves to z={zLoc} without mining a block
+-- moves to z={zLoc} and mines all blocks
 -- returns true if it can move to that location
 -- returns false if anything gets in the way
 function moveToLocZ(zGoing)
@@ -365,25 +317,7 @@ function moveToLocZ(zGoing)
         return true
     end
     for distance = 1,lDist do
-        moveWithoutMining()
-    end
-end
-
--- moves to z={zLoc} backwards without mining a block
--- returns true if it can move to that location
--- returns false if anything gets in the way
-function moveBackToLocZ(zGoing)
-    local lDist = math.abs(zGoing-currentLoc[3])
-
-    if zGoing > currentLoc[3] then
-        faceDirection(FaceBackwardFromStart)
-    elseif zGoing < currentLoc[3] then
-        faceDirection(FaceForwardFromStart)
-    else
-        return true
-    end
-    for distance = 1,lDist do
-        moveWithoutMiningBack()
+        mineForward()
     end
 end
 
@@ -444,7 +378,7 @@ function squareLogic(sideLength)
             break
         end
 
-        moveBackToLocZ(0)
+        moveToLocZ(0)
 
         -- turning code here
         if(currentLoc[1]~=sideLength-1) then -- as long as where we are is not the final x location
