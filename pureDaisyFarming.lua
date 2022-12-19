@@ -12,6 +12,7 @@ function upDownTurnRight()
     turtle.placeUp()
     turtle.digDown()
     turtle.placeDown()
+    turtle.turnRight()
 end
 
 for j=1,200 do
