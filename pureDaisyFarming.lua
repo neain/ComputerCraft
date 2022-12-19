@@ -1,12 +1,28 @@
 --[[
-    This program assums that there is a sheep directly in front of the turtle,
-    an inventory directly behind the turtle and that the turtle has shears in slot 1.
-
-    It will use 200 durability of the ~238 durability that shears have. you can then repair
-        or replace the shears as needed.
+    This program will mine out and replace pure daisy stuff both below and above.
 ]]
-for i=1,200 do
-    turtle.place()
+function upDownTurnRight()
+    turtle.forward()
+    turtle.digUp()
+    turtle.placeUp()
+    turtle.digDown()
+    turtle.placeDown()
+    turtle.forward()
+    turtle.digUp()
+    turtle.placeUp()
+    turtle.digDown()
+    turtle.placeDown()
+end
+
+for j=1,200 do
+    turtle.suckUp(16)
+    turtle.forward()
+    upDownTurnRight()
+    upDownTurnRight()
+    upDownTurnRight()
+    upDownTurnRight()
+    turtle.back()
+    turtle.select(2)
     turtle.drop()
-    os.sleep(5) -- seconds
+    turtle.select(1)
 end
