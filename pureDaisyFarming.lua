@@ -13,6 +13,7 @@ function upDownTurnRight()
     turtle.digDown()
     turtle.placeDown()
     turtle.turnRight()
+    os.sleep(9)
 end
 
 for j=1,200 do
@@ -23,7 +24,10 @@ for j=1,200 do
     upDownTurnRight()
     upDownTurnRight()
     turtle.back()
+    turtle.back()
+    os.sleep(3)
     turtle.select(2)
     turtle.drop()
     turtle.select(1)
+    turtle.forward()
 end
